@@ -69,8 +69,8 @@
 .nav {
     
     height: 100%;
-    background-color: #333;
-    color: #FFF;
+    background-color: #8ea0d5;
+    color: #ffffff;
     padding: 20px 10px;
     width: 11%;
     float: left;
@@ -140,13 +140,10 @@
 }
 
 body {
-    height: 89vh;
+    background: linear-gradient(to bottom right, #dbe4f1 20%, #8ea0d5 100% );
+    height: 100vh;
     margin: 0;
-    justify-content: center;
-    align-items: center;
-    background-image: url("../media/fundo-branco-elegante-com-linhas-de-ondas-azuis.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+
 }
 
 .conteudo {
