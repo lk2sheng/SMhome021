@@ -100,6 +100,10 @@
     height: 100%;
 }
 
+.nav ul li i {
+    font-size: xx-large;
+}
+
 .nav ul li::before {
     content: '';
     width: 4px; 
