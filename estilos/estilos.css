@@ -1,0 +1,233 @@
+
+.titulo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0077FF;
+    color: #fff;
+    padding: 10px 20px;
+    
+}
+
+.titulo h1 {
+    margin: 0;
+    font-size: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+}
+
+#notificacoes-icon{
+    font-size: 30px;
+    cursor: pointer;
+    position: relative;
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+#user-icon{
+    font-size: 36px;
+    cursor: pointer;
+    position: relative;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    position: fixed;
+    display: none; 
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #333;
+    color: #fff; 
+    z-index: 1;
+    top: 50px;
+    right: 7px;
+}
+
+.menu li {
+    list-style: none;
+    display: block; 
+    margin: 0; 
+    border-bottom: 1px solid #555;
+    overflow: hidden;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff; 
+    display: block;
+    padding: 10px;
+    width: 100%;
+    
+}
+
+.menu a:hover {
+    background-color: #555;
+}
+
+.nav {
+    
+    height: 100%;
+    background-color: #333;
+    color: #FFF;
+    padding: 20px 10px;
+    width: 11%;
+    float: left;
+    
+
+}
+
+.nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav ul li {
+    margin-bottom: 20px;
+    border: 1px solid #555;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    text-align: center;
+    height: 70px;
+}
+
+.nav ul li a {
+    text-decoration: none;
+    color: #FFF;
+    width: 100%;
+    height: 100%;
+}
+
+.nav ul li::before {
+    content: '';
+    width: 4px; 
+    height: 100%;
+    background-color: #0077FF; 
+    margin-right: 0px; 
+}
+
+.nav a:hover {
+    background-color: #555;
+}
+
+#mais1 {
+    font-size: 40px; 
+    color: #0077FF; 
+    margin-right: 10px;
+    cursor: pointer; 
+    margin-left: 160px;
+    padding: 0;
+}
+
+#mais1:hover {
+    color: #555; 
+    
+}
+
+#mais2 {
+    font-size: 90px; 
+    color: grey;
+}
+
+#mais1:hover {
+    color: #555; 
+}
+
+body {
+    height: 89vh;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../media/fundo-branco-elegante-com-linhas-de-ondas-azuis.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.conteudo {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.pagina{
+    text-align: left; 
+    margin-top: 10px;
+    margin-left: 10px; 
+    align-items: flex-start;
+    font-size: 45px
+}
+
+.temperatura {
+    text-align: right; 
+    margin-top: 10px;
+    align-items: flex-start;
+    font-size: 35px;
+}
+
+.local {
+    text-align: right; 
+    margin-top: 0;
+    align-items: flex-start;
+    font-size: 35px;
+}
+
+.hora {
+    text-align: center; 
+    margin-top: 10px;
+    align-items: flex-start;
+    font-size: 80px;
+    margin-bottom: 200px;
+
+}
+
+.data{
+    text-align: center; 
+    margin-top: 10px;
+    align-items: flex-start;
+    font-size: 35px;
+
+}
+
+.conteudo2 {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.eletrodomestico {
+    width: calc(50% - 10px); 
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px 0; 
+    text-align: center;
+    box-sizing: border-box; 
+    padding: 10px;
+    color:#555
+}
+
+.eletrodomestico:hover {
+    transform: scale(1.05); 
+    cursor: pointer;
+}
+
+.eletrodomestico p {
+    margin: 0;
+    padding: 10px 0; 
+    font-size: 25px;
+}
+
+.conteudo.bi {
+    font-size: 90px; 
+}
+
+.conteudo2 a {
+    text-decoration: none;
+}
