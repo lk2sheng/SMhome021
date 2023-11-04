@@ -98,7 +98,8 @@
 }
 
 .navigation ul li.active {
-    background: #cffcf9;
+    background: rgba(207, 252, 249, 0.7);
+    
     
 }
 
@@ -221,7 +222,7 @@
 }
 
 body {
-    background: linear-gradient(to bottom right, #dbe4f1 20%, #8ea0d5 100% );
+    background: linear-gradient(to bottom right,#CCCCFF 30%, #dbe4f1 50%, #8ea0d5 100% );
     height: 100vh;
     margin: 0;
 
@@ -248,6 +249,7 @@ body {
     top: 80px; 
     right: 10px; 
     font-size: 35px;
+    font-weight: 500;
     color: rgba(255, 255, 255, 0.6);
 }
 
@@ -256,6 +258,7 @@ body {
     top:150px; 
     right: 10px;
     font-size: 35px;
+    font-weight: 500;
     color: rgba(255, 255, 255, 0.6);
 }
 
@@ -276,7 +279,7 @@ body {
    text-align: center;
    bottom: 15%;
    color: #fff;
-   font-size: 20px;
+   font-size: 30px;
    font-weight: 500;
 }
 
