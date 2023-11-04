@@ -98,7 +98,7 @@
 
 .navigation ul li.active {
     background: #cffcf9;
-    padding-top: 20px;
+    
 }
 
 .navigation ul li a {
@@ -110,7 +110,7 @@
     color: black;
 }
 
-..navigation ul li.active a {
+.navigation ul li.active a {
     color: #333;
 }
 
