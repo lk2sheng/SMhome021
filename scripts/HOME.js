@@ -18,14 +18,17 @@ function Menu_Perfil(){
 }
 
 function obterHoraAtual() {
+    const paragrafoHora = document.getElementById("hora");
     const dataAtual = new Date();
     const horas = dataAtual.getHours();
     const minutos = dataAtual.getMinutes();
+    const segundos = dataAtual.getSeconds();
 
     const horaFormatada = horas < 10 ? `0${horas}` : horas;
     const minutosFormatados = minutos < 10 ? `0${minutos}` : minutos;
+    const segundosFormatados = segundos < 10 ? `0${segundos}` : segundos;
 
-    return `${horaFormatada}:${minutosFormatados}`;
+    paragrafoHora.textContent = `${horaFormatada}:${minutosFormatados}:${segundosFormatados}`;
 }
 
 function obterDiaDaSemana() {
@@ -55,3 +58,7 @@ function principal(){
 
 window.addEventListener("load", principal);
 
+document.addEventListener("DOMContentLoaded", function() {
+    obterHoraAtual();
+    setInterval(obterHoraAtual, 1000);
+});
