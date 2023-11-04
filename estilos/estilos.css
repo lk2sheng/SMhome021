@@ -136,6 +136,8 @@
     line-height: 60px;
     white-space: normal;
     display: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .navigation:hover {
@@ -148,6 +150,7 @@
 
 .navigation:hover .user-info{
     display: block;
+    height: auto;
 }
 
 .navigation:hover .user {
@@ -155,6 +158,8 @@
     background: rgba(206, 206, 206, 0.4);
     backdrop-filter: blur(5px);
     padding-bottom: 0;
+    margin-bottom: 50px;
+    padding-right: 20px;
 }
 
 .user {
@@ -172,6 +177,7 @@
 .user-info {
     margin-left: 62px; 
     display: none;
+    height: 0;
 }
 
 .user-info h2 {
