@@ -296,7 +296,7 @@ body {
     width: calc(50% - 10px); 
     background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 15px;
     margin: 20px 0; 
     text-align: center;
     box-sizing: border-box; 
@@ -305,7 +305,7 @@ body {
 }
 
 .eletrodomestico:hover {
-    transform: scale(1.05); 
+    transform: scale(1.03); 
     cursor: pointer;
 }
 
