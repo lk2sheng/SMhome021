@@ -20,14 +20,20 @@
     font-size: 30px;
     cursor: pointer;
     position: relative;
-    margin-left: auto;
-    margin-right: 30px;
+    width: fit-content;
 }
 
 #user-icon{
     font-size: 36px;
     cursor: pointer;
     position: relative;
+}
+
+#search_icon{
+    position: relative;
+    cursor: pointer;
+    font-size: 36px;
+    width: fit-content;
 }
 
 .menu {
@@ -346,7 +352,7 @@ body {
     
 }
 
-.infoAC{
+.infoAC, .infFrigorifico{
     width: 75%;
     margin: 0 auto;
     align-items: center;
@@ -388,7 +394,7 @@ body {
 }
 
 
-.infosAC {
+.infosAC, .infoFrigorifico {
     border: 2px solid #777;
     border-radius: 15%;
     height: 100px;
@@ -401,7 +407,7 @@ body {
    
 }
 
-.infoAC2 {
+.infoAC2, .infFrigorifico2 {
     border: 2px solid #777;
     padding: 10px;
     text-align: center;
