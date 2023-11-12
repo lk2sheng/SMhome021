@@ -51,6 +51,8 @@ let previousTemperature = currentTemperature;
 let previousPower = currentPower;
 let previousMode = currentMode;
 let ACinfo = []
+const storedACInfo = localStorage.getItem("ACINFO");
+let previousDataId = 0;
 
 
 function toggleAC(state) {
@@ -184,12 +186,14 @@ function saveChanges() {
             currentPower = newPower;
             currentMode = newMode;
             customDialog.style.display = 'none';
-            window.location.href = "../HOME.html";
-            console.log('Alterações salvas com sucesso.');
-            let ACData = new AC(isACOn,currentTemperature,currentPower,currentMode);
-            ACinfo.push(ACData);
+
+            let ACData = new AC(document.title, isACOn,currentTemperature,currentPower,currentMode);
+            ACinfo[previousDataId] = ACData;
             localStorage.setItem("ACINFO",JSON.stringify(ACinfo));
             change = false;
+
+            console.log('Alterações salvas com sucesso.');
+            window.location.href = "../HOME.html";
 
         });
 
@@ -214,11 +218,14 @@ function saveChanges() {
     }
 }
 
-function AC(connection,temperature,power,mode){
-    this.connection = connection
-    this.temperature = temperature
-    this.power = power
-    this.mode = mode
+class AC {
+    constructor (room, connection,temperature,power,mode){
+        this.room = room;
+        this.connection = connection;
+        this.temperature = temperature;
+        this.power = power;
+        this.mode = mode;
+    }
 }
 
 function GoBack() {
@@ -243,10 +250,18 @@ function GoBack() {
 }
 
 function principal(){
-    const storedACInfo = localStorage.getItem("ACINFO");
+    let lastACData = null;
+
     if (storedACInfo) {
         ACinfo = JSON.parse(storedACInfo);
-        const lastACData = ACinfo[ACinfo.length - 1];
+        previousDataId = ACinfo.length;
+        for (let data in ACinfo){ 
+            if (document.title == ACinfo[data].room){
+                lastACData = ACinfo[data];
+                previousDataId = data;
+            }
+        }
+
         if (lastACData) {
             isACOn = lastACData.connection;
             currentTemperature = lastACData.temperature;
