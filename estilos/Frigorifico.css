@@ -32,10 +32,7 @@ body{
     height: 100%;
 }
 
-.navigation.active {
-    transform: translateY(-50px); /* Move the box up by 50px when active */
-    transition: 1s linear;
-  }
+
 
 .search-form{
     position: absolute;
@@ -115,19 +112,29 @@ section{
     padding: 2rem 9%;
 }
 
+
+
 .frigo .box-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap: 1.5rem;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 40px;
+    align-items: center;
+
+
+  
 }
 
 .frigo .box-container .box{
-    padding: 3rem 2rem;
+    padding: 2rem 1rem;
     background: var(--white);
     outline: var(--outline);
     outline-offset: -1rem;
     text-align: center;
     box-shadow: var(--box-shadow);
+    margin-right: 30px;
+    margin-bottom: 20px;
 } 
 
 .frigo .box-container .box:hover{
@@ -136,7 +143,7 @@ section{
 
 .frigo .box-container .box img{
     margin: 1rem 0;
-    height: 15rem;
+    height: 12rem;
 }
 
 .frigo .box-container .box h3{
