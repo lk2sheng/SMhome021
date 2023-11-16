@@ -13,6 +13,10 @@ function defineEventHandlersParaElementosHTML(){
     const nextModeButton = document.getElementById('nextMode');
     const saveChangesButton = document.getElementById('guardarButton');
     const BackButton = document.getElementById('back-button');
+    const schedulingButton = document.getElementById('agendamentosButton');
+    const confirmButton = document.getElementById('confirmButton');
+    const cancelButton = document.getElementById('cancelButton');
+    const okButton = document.getElementById('okButton');
    
     
     userIcon.addEventListener("click", Menu_Perfil);
@@ -26,8 +30,10 @@ function defineEventHandlersParaElementosHTML(){
     nextModeButton.addEventListener('click', () => changeMode(1));
     saveChangesButton.addEventListener('click', saveChanges);
     BackButton.addEventListener("click",GoBack);
-
-    
+    schedulingButton.addEventListener("click", Scheduling);
+    confirmButton.addEventListener('click', schedule);
+    cancelButton.addEventListener('click', Cancel);
+    okButton.addEventListener('click', Cancel);
 }
 
 function Menu_Perfil(){
@@ -39,20 +45,118 @@ function Menu_Perfil(){
     }
 }
 
+function Scheduling(){
+    const Horario = document.getElementById('horario');
+    if (Horario.style.display === 'block') {
+        Horario.style.display = 'none';
+    } else {
+        Horario.style.display = 'block';
+    }
+}
+
+function Cancel(){
+    window.location.href = "AC SALA.html";
+}
+
+function ScheduleAC(name,connection,temperature,power,mode, dayOfWeek, hour, minute) {
+    this.name= name;
+    this.connection = connection;
+    this.temperature = temperature;
+    this.power = power;
+    this.mode = mode;
+    this.dayOfWeek = dayOfWeek;
+    this.hour = hour;
+    this.minute = minute;
+}
+
+function schedule() {
+    const selectedDays = Array.from(document.querySelectorAll('.checkbox-group input:checked')).map(checkbox => checkbox.value);
+    const selectedHourElement = document.getElementById('selectedHour');
+    const selectedMinuteElement = document.getElementById('selectedMinute');
+    const Dialog = document.getElementById("scheduleconfirmed");
+    const Horario = document.getElementById('horario');
+    const selectedHour = selectedHourElement.value;
+    const selectedMinute = selectedMinuteElement.value;
+
+    if (selectedDays.length > 0 && selectedHour != undefined && selectedMinute != undefined) {
+        
+        let ScheduleData = new ScheduleAC("AC SALA",isACOn,currentTemperature,currentPower,currentMode, selectedDays, selectedHour, selectedMinute);
+        
+        let Schedule = JSON.parse(localStorage.getItem('Schedule')) || [];
+        
+        Schedule.push(ScheduleData);
+
+        localStorage.setItem("Schedule", JSON.stringify(Schedule));
+
+        Dialog.style.display = 'block';
+        Horario.style.display = "none"; 
+        
+    }
+    
+}
+
+
+function updateSelectedTime(selectedItem, value, selectedTimeId, containerId) {
+    const selectedTimeElement = document.getElementById(selectedTimeId);
+    const scrollContainer = document.getElementById(containerId);
+
+    if (selectedTimeElement && scrollContainer) {
+        const otherTimeElements = scrollContainer.querySelectorAll('.scroll-item');
+        otherTimeElements.forEach(element => {
+            element.style.backgroundColor = '';
+        });
+
+        selectedItem.style.backgroundColor = '#4caf50';
+
+        selectedTimeElement.value = (value < 10 ? '0' : '') + value;
+    } 
+}
+
+
+function populateTimeScrolls1() {
+    const hourScroll = document.getElementById('hourScroll');
+    
+    for (let hour = 0; hour < 24; hour++) {
+        const hourOption = document.createElement('div');
+        hourOption.textContent = (hour < 10 ? '0' : '') + hour;
+        hourOption.classList.add('scroll-item');
+        hourOption.dataset.value = hour;
+        hourOption.addEventListener('click', function() {
+            updateSelectedTime(hourOption, hourOption.dataset.value, 'selectedHour', 'hourScroll');
+        });
+        hourScroll.appendChild(hourOption);
+    }
+}
+
+function populateTimeScrolls2() {
+    const minuteScroll = document.getElementById('minuteScroll');
+    
+    for (let minute = 0; minute < 60; minute++) {
+        const minuteOption = document.createElement('div');
+        minuteOption.textContent = (minute < 10 ? '0' : '') + minute;
+        minuteOption.classList.add('scroll-item');
+        minuteOption.dataset.value = minute;
+        minuteOption.addEventListener('click', function() {
+            updateSelectedTime(minuteOption, minuteOption.dataset.value, 'selectedMinute', 'minuteScroll');
+        });
+        minuteScroll.appendChild(minuteOption);
+    }
+}
+
 
 let isACOn = false;
 let currentTemperature = 22;
 let currentPower = 2;
-const modes = ["Resfriamento", "Aquecimento", "Ventilação", "Automático"];
+const modes = ["RESFRIAMENTO", "AQUECIMENTO", "VENTILAÇÃO", "AUTOMÁTICO"];
 let currentModeIndex = 0;
-let currentMode="Automático"
+let currentMode="AUTOMÁTICO"
 let change = false;
 let previousTemperature = currentTemperature;
 let previousPower = currentPower;
 let previousMode = currentMode;
 let ACinfo = []
-const storedACInfo = localStorage.getItem("ACINFO");
-let previousDataId = 0;
+
+
 
 
 function toggleAC(state) {
@@ -157,13 +261,15 @@ function increasePowerValue() {
 function changeMode(delta) {
     const currentModeDisplay = document.getElementById('currentMode');
     const saveChangesButton = document.getElementById('guardarButton');
+    
     currentModeIndex = (currentModeIndex + delta) % modes.length;
     if (currentModeIndex < 0) {
         currentModeIndex = modes.length - 1;
         change = true;
         saveChangesButton.style.backgroundColor="green"
     }
-    currentModeDisplay.textContent = modes[currentModeIndex];
+    currentMode = modes[currentModeIndex]; 
+    currentModeDisplay.textContent = currentMode;
 }
 
 function saveChanges() {
@@ -186,50 +292,72 @@ function saveChanges() {
             currentPower = newPower;
             currentMode = newMode;
             customDialog.style.display = 'none';
-
-            let ACData = new AC(document.title, isACOn,currentTemperature,currentPower,currentMode);
-            ACinfo[previousDataId] = ACData;
-            localStorage.setItem("ACINFO",JSON.stringify(ACinfo));
-            change = false;
-
-            console.log('Alterações salvas com sucesso.');
             window.location.href = "../HOME.html";
+            
+            let ACData = new AC(isACOn,currentTemperature,currentPower,currentMode);
+            ACinfo.push(ACData);
+            localStorage.setItem("ACSALA",JSON.stringify(ACinfo));
+            change = false;
 
         });
 
         confirmNo.addEventListener('click', function() {
             customDialog.style.display = 'none';
-            // Restaurar os valores anteriores
-            currentTemperature = previousTemperature;
-            currentPower = previousPower;
-            currentMode = previousMode;
-            // Atualizar os elementos na interface com os valores anteriores
-            const currentTemperatureDisplay = document.getElementById('currentTemperature');
-            currentTemperatureDisplay.textContent = currentTemperature + '°C';
-            const currentPowerDisplay = document.getElementById('currentpower');
-            currentPowerDisplay.textContent = currentPower;
-            const currentModeDisplay = document.getElementById('currentMode');
-            currentModeDisplay.textContent = currentMode;
-            console.log('Alterações não salvas.');
+            
+            let storedACInfo = localStorage.getItem("ACSALA");
+            if (storedACInfo) {
+                ACinfo = JSON.parse(storedACInfo);
+                const lastACData = ACinfo[ACinfo.length - 1];
+                if (lastACData) {
+                    isACOn = lastACData.connection;
+                    currentTemperature = lastACData.temperature;
+                    currentPower = lastACData.power;
+                    currentMode = lastACData.mode;
+                    if (isACOn){
+                        toggleAC("on")
+                    }else{
+                        toggleAC("off")
+                    }
+                    const currentTemperatureDisplay = document.getElementById('currentTemperature');
+                    currentTemperatureDisplay.textContent = currentTemperature + '°C';
+                    const currentPowerDisplay = document.getElementById('currentpower');
+                    currentPowerDisplay.textContent = currentPower;
+                    const currentModeDisplay = document.getElementById('currentMode');
+                    currentModeDisplay.textContent = currentMode;
+                }
+            }else{
+                currentTemperature = previousTemperature;
+                currentPower = previousPower;
+                currentMode = previousMode;
+                
+                const currentTemperatureDisplay = document.getElementById('currentTemperature');
+                currentTemperatureDisplay.textContent = currentTemperature + '°C';
+                const currentPowerDisplay = document.getElementById('currentpower');
+                currentPowerDisplay.textContent = currentPower;
+                const currentModeDisplay = document.getElementById('currentMode');
+                currentModeDisplay.textContent = currentMode;
+            }
             change = false;
         });
-    } else {
-        console.log('Nenhuma alteração para salvar.');
     }
 }
 
-class AC {
-    constructor (room, connection,temperature,power,mode){
-        this.room = room;
-        this.connection = connection;
-        this.temperature = temperature;
-        this.power = power;
-        this.mode = mode;
-    }
+function AC(connection,temperature,power,mode){
+    this.connection = connection;
+    this.temperature = temperature;
+    this.power = power;
+    this.mode = mode;
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    populateTimeScrolls1();
+    populateTimeScrolls2();
+});
+
 
 function GoBack() {
-    console.log(change);
+    
     if (change) {
         const outDialog = document.getElementById('out-dialog');
         const confirmYes = document.getElementById('yes');
@@ -250,28 +378,23 @@ function GoBack() {
 }
 
 function principal(){
-    let lastACData = null;
-
+    let storedACInfo = localStorage.getItem("ACSALA");
+    
     if (storedACInfo) {
         ACinfo = JSON.parse(storedACInfo);
-        previousDataId = ACinfo.length;
-        for (let data in ACinfo){ 
-            if (document.title == ACinfo[data].room){
-                lastACData = ACinfo[data];
-                previousDataId = data;
-            }
-        }
-
+        const lastACData = ACinfo[ACinfo.length - 1];
         if (lastACData) {
             isACOn = lastACData.connection;
             currentTemperature = lastACData.temperature;
             currentPower = lastACData.power;
             currentMode = lastACData.mode;
+          
+            
         }
         if (isACOn){
             toggleAC("on")
         }
-    }
+    } 
     
     const currentTemperatureDisplay = document.getElementById('currentTemperature');
     currentTemperatureDisplay.textContent = currentTemperature + '°C';
@@ -280,9 +403,8 @@ function principal(){
     const currentModeDisplay = document.getElementById('currentMode');
     currentModeDisplay.textContent = currentMode;
 
-
-
     defineEventHandlersParaElementosHTML();
+    
 }
 
 window.addEventListener("load", principal);
