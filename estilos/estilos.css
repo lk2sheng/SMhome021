@@ -398,6 +398,10 @@ body {
     width: 200px;
 }
 
+#methodconfirmed {
+    display: none;
+}
+
 .dialog, .scheduleconfirmed {
     display: none;
     position: fixed;
@@ -625,3 +629,25 @@ select {
     margin-top: 9px;
     font-size: 20px;
   }
+
+#MBWAY {
+    position: relative;
+    padding: 40px;
+    margin: 45px auto;
+    width: 70%;
+    border: 3px solid #000000;
+    text-align: center;
+    font-size: 40px;
+    text-decoration: none;
+}
+
+#CARTAO {
+    position: relative;
+    padding: 40px;
+    margin: auto auto;
+    width: 70%;
+    border: 3px solid #000000;
+    text-align: center;
+    font-size: 40px;
+    text-decoration: none;
+}
