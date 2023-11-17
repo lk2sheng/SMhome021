@@ -46,6 +46,51 @@ h3 {
 }
 
 img {
-    max-width: 100%;
+    max-width: 70%;
     height: auto;
+}
+
+.frigo #items-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 40px;
+    align-items: center;
+
+
+  
+}
+
+.frigo #items-container .box{
+    padding: 2rem 1rem;
+    background: var(--white);
+    outline: var(--outline);
+    outline-offset: -1rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    margin-right: 30px;
+    margin-bottom: 20px;
+} 
+
+.frigo #items-container .box:hover{
+    box-shadow: 1px 1px 10px 4px var(--blue);
+}
+
+.frigo #items-container .box img{
+    margin: 1rem 0;
+    height: 12rem;
+}
+
+.frigo #items-container .box h3{
+    font-size: 2.5rem;
+    line-height: 1.8;
+    color: var(--black);
+}
+
+.frigo #items-container .box p{
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: var(--light--text);
+    padding-bottom: 1rem o;
 }
