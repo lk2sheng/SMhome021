@@ -20,7 +20,8 @@
     font-size: 30px;
     cursor: pointer;
     position: relative;
-    width: fit-content;
+    margin-left: auto;
+    margin-right: 30px;
 }
 
 #user-icon{
@@ -29,12 +30,6 @@
     position: relative;
 }
 
-#search_icon{
-    position: relative;
-    cursor: pointer;
-    font-size: 36px;
-    width: fit-content;
-}
 
 .menu {
     list-style: none;
@@ -256,11 +251,12 @@ body {
 }
 
 .eletrodomestico {
-    width: calc(50% - 10px); 
+    width: calc(50% - 10px);
+    height: 150px;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 15px;
-    margin: 20px 0; 
+    margin: 10px 0; 
     text-align: center;
     box-sizing: border-box; 
     padding: 10px;
@@ -354,7 +350,7 @@ body {
 .infosAC, .infoFrigorifico {
     border: 2px solid #777;
     border-radius: 15%;
-    height: 100px;
+    height: 70px;
     font-size: 2em;
     margin: 0;
     align-items: center;
@@ -373,15 +369,17 @@ body {
     border-radius: 5%;
     margin-right: 20px;
     background-color: #CCCCFF;
-    width: 350px;
+    width: 250px;
+    justify-content: center;
    
 }
 
 #temperature-buttons, #power-buttons, #mode-buttons{
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-right: 5px;
+    padding: 0;
 }
 
 #increaseTemperature, #increasePower, #nextMode {
@@ -395,12 +393,12 @@ body {
     cursor: pointer;
     margin: 0;
     margin-right: 10px;
-    margin-top: 50px;
+    margin-top: 20px;
     border-radius: 5px;
-    width: 250px;
+    width: 200px;
 }
 
-.dialog {
+.dialog, .scheduleconfirmed {
     display: none;
     position: fixed;
     top: 50%;
@@ -414,19 +412,32 @@ body {
     z-index: 1000;
 }
 
-.dialog p {
+
+.dialog p,  .scheduleconfirmed p{
     font-size: 25px;
     margin: 0 0 20px;
 }
 
-.dialog button {
+.dialog button, .scheduleconfirmed button {
     padding: 10px 20px;
     font-size: 20px;
     margin: 0 10px;
     cursor: pointer;
 }
 
-.dialog button#confirm-yes,.dialog button#yes  {
+#okButton {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+
+}
+
+#okButton:hover {
+    background-color: #303f9f;
+}
+
+.dialog button#confirm-yes,.dialog button#yes {
     background-color: #2ecc71;
     color: #fff;
     border: none;
@@ -451,16 +462,166 @@ body {
     bottom: 20px;
     left: 90px;
     cursor: pointer;
-    background-color: #007BFF; /* Cor de fundo do botão */
-    color: #FFF; /* Cor do ícone */
+    background-color: #007BFF; 
+    color: #FFF; 
     width: 40px;
     height: 40px;
     border-radius: 50%;
     text-align: center;
     line-height: 40px;
-    transition: background-color 0.3s; /* Efeito de transição de cor de fundo */
+    transition: background-color 0.3s; 
 }
 
 .back-button:hover {
-    background-color: #0056b3; /* Cor de fundo no hover */
+    background-color: #0056b3; 
 }
+
+
+.horario{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 50px;
+    text-align: center;
+    z-index: 1000;
+
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+form{
+    width: 300px;
+}
+
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+
+.scroll-container {
+    overflow-y: scroll;
+    max-height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+
+.scroll-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.scroll-item:hover {
+    background-color: #ddd; 
+    cursor: pointer; 
+}
+
+
+.checkbox-group {
+    display: flex;
+}
+
+.checkbox-group input {
+    display: none;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 8px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.checkbox-group input:checked + label {
+    border-color: #4caf50; 
+    background-color: #4caf50; 
+    color: #fff; 
+}
+
+#confirmButton,
+#cancelButton {
+    display: inline-block;
+    width: 40%; 
+    padding: 10px;
+    margin-right: 2%; 
+    background-color: #4caf50;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#cancelButton {
+    background-color: red;
+}
+
+#confirmButton:hover{
+    background-color: #45a049;
+}
+
+#cancelButton:hover{
+    background-color: #d32f2f;
+}
+
+
+.schedule-container {
+    max-height: 500px;
+    overflow-y: auto; 
+   
+}
+
+.schedule-item {
+    width: 87%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    margin-left: 100px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.schedule-details {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+.schedule-details p {
+    margin-right: 15px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.delete-icon {
+    color: red; 
+    cursor: pointer; 
+    margin-left: 10px; 
+    margin-top: 9px;
+    font-size: 20px;
+  }
