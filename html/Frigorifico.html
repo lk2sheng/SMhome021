@@ -26,15 +26,8 @@
         <input type="search" id="search-box" placeholder="Search here......."> 
         <label for="search-box" class="fa fa-search"></label>
     </form>
-    <nav class="navigation">
+    <nav class="navigation" id="navbar">
         <ul>
-            <div class="user">
-                <img src="../media/user-286.png" class="user-img">
-                <div class="user-info">
-                    <h2>Pedro Miguel</h2>
-                    <p>PedMiguel@gmail.com</p>
-                </div>
-            </div>
             <li class="list">
                 <a href="../HOME.html">
                     <span class="icon"><i class="bi bi-house"></i></span>
@@ -79,6 +72,39 @@
             </li>
         </ul>
     </nav>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const links = document.querySelectorAll('.navigation ul li a');
+    
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (!navbar.classList.contains('clicked')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    
+        navbar.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navbar.classList.toggle('clicked');
+    
+            setTimeout(function() {
+                navbar.classList.toggle('closing');
+            }, 1000);
+        });
+    
+        document.addEventListener('click', function() {
+            navbar.classList.remove('clicked', 'closing');
+        });
+    
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                navbar.classList.remove('clicked', 'closing');
+            });
+        });
+    </script>
+
     <div class="conteudo">
         <!-- Os teu items section-->
         <section class="frigo" id="frigo">
