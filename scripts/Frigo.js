@@ -15,11 +15,11 @@ let searchFrom = document.querySelector(".search-form");
 
 const stock = [new Item("Queijo", "2023-12-20", "../media/image-firgo-6.jpg", 1), 
     new Item("Leite", "2023-11-3", "../media/image-firgo-2.jpg", 3), 
-new Item("Iogurte", "2023-12-25", "../media/image-firgo-2.jpg", 2)];
+new Item("Iogurte", "2023-12-25", "../media/image-firgo-13.jpg", 2)];
 
-const suggested = [new Item("Farinha", "../media/image-firgo-2.jpg"),
+const suggested = [new Item("Farinha", "../media/farinha.jpg"),
  ("Leite", "../media/image-firgo-2.jpg"),
-  ("Ovos", "../media/image-firgo-2.jpg")];
+  ("Ovos", "../media/image-firgo-10.jpg")];
 
 
 document.querySelector("#search_icon").onclick = () =>{
@@ -55,24 +55,7 @@ function Menu_Perfil(){
 }
 
 function GoBack() {
-    console.log(change);
-    if (change) {
-        const outDialog = document.getElementById('out-dialog');
-        const confirmYes = document.getElementById('yes');
-        const confirmNo = document.getElementById('no');
-        
-        outDialog.style.display = 'block';
-        
-        confirmYes.addEventListener('click', function() {
-            window.history.back();
-        });
-
-        confirmNo.addEventListener('click', function() {
-            outDialog.style.display = 'none';
-        });
-    } else {
-        window.history.back();
-    }
+    window.history.back();
 }
 
 function createProductBox(product) {
@@ -86,7 +69,7 @@ function createProductBox(product) {
     h3.textContent = product.name;
 
     var p = document.createElement("p");
-    p.textContent = product.expirationDate;
+    p.textContent = "Consumir antes de: " + product.expirationDate;
 
     // Append elements to the box
     box.appendChild(img);
@@ -107,7 +90,7 @@ function shuffleArray(array) {
 // Function to get or generate the randomized products
 function getOrGenerateRandomizedProducts() {
     // Check if the products are already stored in local storage
-    var storedProducts = localStorage.getItem("randomizedProducts");
+    var storedProducts = sessionStorage.getItem("randomizedProducts");
 
     if (storedProducts) {
         // If products are stored, parse and return them
@@ -115,7 +98,7 @@ function getOrGenerateRandomizedProducts() {
     } else {
         // If no products are stored, shuffle the products, store them, and return
         var shuffledProducts = shuffleArray(stock.slice());
-        localStorage.setItem("randomizedProducts", JSON.stringify(shuffledProducts));
+        sessionStorage.setItem("randomizedProducts", JSON.stringify(shuffledProducts));
         return shuffledProducts;
     }
 }
@@ -168,7 +151,7 @@ function defineEventHandlersParaElementosHTML(){
 
     document.addEventListener("scroll", scrollHelper);
     userIcon.addEventListener("click", Menu_Perfil);
-    BackButton.addEventListener("click",GoBack);   
+    BackButton.addEventListener("click", GoBack);   
 }
 
 
