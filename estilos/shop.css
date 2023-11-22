@@ -1,0 +1,96 @@
+#items-container {
+    margin-left: 45px;
+}
+
+
+#cartBox {
+    margin-right: 15px;
+    position: fixed;
+    top: 75px;
+    right: 5px;
+    border: 3px solid #000000;
+    padding: 25px;
+}
+
+.cartItemBox {
+    margin-left: 10px;
+}
+
+#checkoutButton {
+    border: 1px solid #353232;
+    background-color: whitesmoke;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 5px;
+    width: 60%;
+    height: 15px;
+    text-align: center;
+}
+
+#total {
+    border: 1px solid #353232;
+    background-color: whitesmoke;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 2px;
+    text-align: center;
+}
+
+.removeItemButton {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+img {
+    max-width: 70%;
+    height: auto;
+}
+
+.frigo #items-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 40px;
+    align-items: center;
+
+
+  
+}
+
+.frigo #items-container .box{
+    padding: 2rem 1rem;
+    background: var(--white);
+    outline: var(--outline);
+    outline-offset: -1rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    margin-right: 30px;
+    margin-bottom: 20px;
+} 
+
+.frigo #items-container .box:hover{
+    box-shadow: 1px 1px 10px 4px var(--blue);
+}
+
+.frigo #items-container .box img{
+    margin: 1rem 0;
+    height: 12rem;
+}
+
+.frigo #items-container .box h3{
+    font-size: 2.5rem;
+    line-height: 1.8;
+    color: var(--black);
+}
+
+.frigo #items-container .box p{
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: var(--light--text);
+    padding-bottom: 1rem o;
+}

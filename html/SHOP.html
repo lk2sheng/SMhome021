@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sala de Estar</title>
+    <title>Shop</title>
     <link rel="stylesheet" type="text/css" href="../estilos/estilos.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/versao/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../estilos/Frigorifico.css">
+    <link rel="stylesheet" type="text/css" href="../estilos/shop.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"> 
     <script src="https://kit.fontawesome.com/e4cd29672c.js" crossorigin="anonymous"></script>
-    <script src="../scripts/SALA.js"></script>
+    <script src="../scripts/SHOP.js"></script>
 </head>
 <body>
     <div class="titulo">
         <h1>SMARTHOME</h1>
+        <i class="fa-solid fa-magnifying-glass" id="search_icon"></i>
         <i class="bi bi-bell" id="notificacoes-icon"></i>
         <i class="bi bi-person" id="user-icon"></i>
         <ul class="menu" id="user-menu">
@@ -22,6 +24,10 @@
             <li><a href="#">Sair</a></li>
         </ul>
     </div>
+    <form class="search-form">
+        <input type="search" id="search-box" placeholder="Search here......."> 
+        <label for="search-box" class="fa fa-search"></label>
+    </form>
     <nav class="navigation">
         <ul>
             <li class="list">
@@ -30,7 +36,7 @@
                     <span class="title">HOME</span>
                 </a>
             </li>
-            <li class="list active">
+            <li class="list">
                 <a href="SALA.html">
                     <span class="icon"><i class="bi bi-display"></i></span>
                     <span class="title">SALA DE ESTAR</span>
@@ -42,7 +48,7 @@
                     <span class="title">COZINHA</span>
                 </a>
             </li>
-            <li class="list">
+            <li class="list active">
                 <a href="QUARTO.html">
                     <span class="icon"><i class="bi bi-moon-stars"></i></span>
                     <span class="title">QUARTO</span>
@@ -69,34 +75,21 @@
         </ul>
     </nav>
     <div class="conteudo">
-        <h1 class="pagina">Sala de Estar</h1>     
-        <div class="conteudo2"> 
-            <a href="AC SALA.html" class="eletrodomestico">
-                <p>AR CONDICIONADO</p>
-                <i class="bi bi-snow" style="font-size: 70px;"></i>
-            </a>
-            <a href="#" class="eletrodomestico">
-                <p>LUZES</p>
-                <i class="bi bi-lightbulb" style="font-size: 70px;"></i>
-            </a>
-            <a href="#" class="eletrodomestico">
-                <p>ESTORES/PERSIANAS</p>
-                <i class="fas fa-sun" style="font-size: 70px;"></i>
-            </a>
-            <a href="#" class="eletrodomestico">
-                <p>ASPIRADOR</p>
-                <i class="fas fa-wind" style="font-size: 70px;"></i>
-            </a>
-            <a href="#" class="eletrodomestico">
-                <p>ADICIONAR</p>
-                <i class="bi bi-plus-circle" id="mais2" style="font-size: 70px;"></i>
-            </a>
-        
-        
-        
-    
+        <h1 class="pagina">SHOP</h1>
+        <section class="frigo" id="frigo">
+            <div id="items-container">
+            </div>
+        </section>
+        <div id="back-button" class="back-button">
+            <i class="fas fa-arrow-circle-left" style="font-size: 50px;"></i>
         </div>
-
+        <div id="cartBox">
+            <p id="total">Total: 0.00€</p>
+            <a href="CHECK-OUT.html" id="checkoutButton">CHECK-OUT</a>
+        </div>
     </div>
+
+
+    
 </body>
 </html>

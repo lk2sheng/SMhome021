@@ -21,7 +21,6 @@
 
 html{
     font-size: 62.5%;
-    overflow-x: hidden;
     scroll-behavior: smooth;
     scroll-padding-top: 7rem;
 }
@@ -111,8 +110,6 @@ body{
 section{
     padding: 2rem 9%;
 }
-
-
 
 .frigo .box-container{
     width: 100%;
