@@ -28,7 +28,8 @@
         <input type="search" id="search-box" placeholder="Search here......."> 
         <label for="search-box" class="fa fa-search"></label>
     </form>
-    <nav class="navigation">
+    
+    <nav class="navigation" id="navbar">
         <ul>
             <li class="list">
                 <a href="../HOME.html">
@@ -42,13 +43,13 @@
                     <span class="title">SALA DE ESTAR</span>
                 </a>
             </li>
-            <li class="list">
+            <li class="list active">
                 <a href="COZINHA.html">
                     <span class="icon"><i class="bi bi-fire"></i></span>
                     <span class="title">COZINHA</span>
                 </a>
             </li>
-            <li class="list active">
+            <li class="list">
                 <a href="QUARTO.html">
                     <span class="icon"><i class="bi bi-moon-stars"></i></span>
                     <span class="title">QUARTO</span>
@@ -74,6 +75,39 @@
             </li>
         </ul>
     </nav>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const links = document.querySelectorAll('.navigation ul li a');
+    
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (!navbar.classList.contains('clicked')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    
+        navbar.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navbar.classList.toggle('clicked');
+    
+            setTimeout(function() {
+                navbar.classList.toggle('closing');
+            }, 1000);
+        });
+    
+        document.addEventListener('click', function() {
+            navbar.classList.remove('clicked', 'closing');
+        });
+    
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                navbar.classList.remove('clicked', 'closing');
+            });
+        });
+    </script>
+
     <div class="conteudo">
         <h1 class="pagina">SHOP</h1>
         <section class="frigo" id="frigo">
@@ -85,7 +119,7 @@
         </div>
         <div id="cartBox">
             <p id="total">Total: 0.00€</p>
-            <a href="CHECK-OUT.html" id="checkoutButton">CHECK-OUT</a>
+            <a href="pagamento.html" id="checkoutButton">CHECK-OUT</a>
         </div>
     </div>
 

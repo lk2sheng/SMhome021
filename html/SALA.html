@@ -22,7 +22,8 @@
             <li><a href="#">Sair</a></li>
         </ul>
     </div>
-    <nav class="navigation">
+
+    <nav class="navigation" id="navbar">
         <ul>
             <li class="list">
                 <a href="../HOME.html">
@@ -68,6 +69,39 @@
             </li>
         </ul>
     </nav>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const links = document.querySelectorAll('.navigation ul li a');
+    
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (!navbar.classList.contains('clicked')) {
+                    e.preventDefault();
+                }
+            });
+        });
+    
+        navbar.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navbar.classList.toggle('clicked');
+    
+            setTimeout(function() {
+                navbar.classList.toggle('closing');
+            }, 1000);
+        });
+    
+        document.addEventListener('click', function() {
+            navbar.classList.remove('clicked', 'closing');
+        });
+    
+        links.forEach(link => {
+            link.addEventListener('click', function() {
+                navbar.classList.remove('clicked', 'closing');
+            });
+        });
+    </script>
+
     <div class="conteudo">
         <h1 class="pagina">Sala de Estar</h1>     
         <div class="conteudo2"> 
