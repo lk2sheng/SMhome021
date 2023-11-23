@@ -17,9 +17,10 @@ const stock = [new Item("Queijo", "2023-12-20", "../media/image-firgo-6.jpg", 1)
     new Item("Leite", "2023-11-3", "../media/image-firgo-2.jpg", 3), 
 new Item("Iogurte", "2023-12-25", "../media/image-firgo-13.jpg", 2)];
 
-const suggested = [new Item("Farinha", "../media/farinha.jpg"),
- ("Leite", "../media/image-firgo-2.jpg"),
-  ("Ovos", "../media/image-firgo-10.jpg")];
+const suggested = [new Item("Farinha", "none", "../media/farinha.jpg"),
+  new Item("Leite", "none", "../media/image-firgo-2.jpg"),
+  new Item("Ovos", "none", "../media/image-firgo-10.jpg"), 
+  new Item('Frango', "none", "../media/image-firgo-9.jpg")];
 
 
 document.querySelector("#search_icon").onclick = () =>{
@@ -68,13 +69,18 @@ function createProductBox(product) {
     var h3 = document.createElement("h3");
     h3.textContent = product.name;
 
-    var p = document.createElement("p");
-    p.textContent = "Consumir antes de: " + product.expirationDate;
+    if (product.expirationDate != "none"){
+        var p = document.createElement("p");
+        p.textContent = "Consumir antes de: " + product.expirationDate;
+    }
+    
 
     // Append elements to the box
     box.appendChild(img);
     box.appendChild(h3);
-    box.appendChild(p);
+    if (product.expirationDate != "none"){
+        box.appendChild(p);
+    }
 
     return box;
 }
@@ -84,7 +90,9 @@ function shuffleArray(array) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
-    return array;
+
+    //return array.slice(Math.floor(Math.random() * (array.length-1)));
+    return array
 }
 
 // Function to get or generate the randomized products
@@ -97,7 +105,7 @@ function getOrGenerateRandomizedProducts() {
         return JSON.parse(storedProducts);
     } else {
         // If no products are stored, shuffle the products, store them, and return
-        var shuffledProducts = shuffleArray(stock.slice());
+        var shuffledProducts = shuffleArray(suggested.slice());
         sessionStorage.setItem("randomizedProducts", JSON.stringify(shuffledProducts));
         return shuffledProducts;
     }
@@ -107,8 +115,8 @@ function getOrGenerateRandomizedProducts() {
 var randomizedProducts = getOrGenerateRandomizedProducts();
 
 // Split the randomized array into two
-var products1 = randomizedProducts.slice(0, Math.ceil(randomizedProducts.length / 2));
-var products2 = randomizedProducts.slice(Math.ceil(randomizedProducts.length / 2));
+var products1 = stock;
+var products2 = randomizedProducts;
 
 // Function to display products
 function displayProducts1(filteredProducts) {
