@@ -185,6 +185,3 @@ document.getElementById("search-box").addEventListener("input", function() {
     displayProducts1(filteredProducts1);
     displayProducts2(filteredProducts2);
 });
-
-
-window.addEventListener("load", principal);

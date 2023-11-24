@@ -50,6 +50,7 @@ body{
 .search-form.active{
     right: 2rem;
     transition: .4s linear;
+    z-index: 99999;
 }
 
 .search-form input{
@@ -92,19 +93,20 @@ body{
 .btn{
     border: .2rem solid var(--black);
     margin-top: 1rem;
-    display: inline-block;
+    display: block;
     padding: .8rem 3rem;
     font-size: 1.7rem;
     border-radius: .5rem;
-    color: var(--black);
+    width: 10%;
     cursor: pointer;
     background: none;
     transition: 0.5s linear;
-}
-
-.btn:hover{
     background-color: var(--blue);
     color: var(--white);
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    margin-bottom: 5rem;
 }
 
 section{
