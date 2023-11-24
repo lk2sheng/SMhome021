@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/versao/css/all.min.css">
     <script src="https://kit.fontawesome.com/e4cd29672c.js" crossorigin="anonymous"></script>
     <script src="../scripts/SALA.js"></script>
+    <script src="../scripts/navbar.js"></script>
 </head>
 <body>
     <div class="titulo">
@@ -69,38 +70,6 @@
             </li>
         </ul>
     </nav>
-
-    <script>
-        const navbar = document.getElementById('navbar');
-        const links = document.querySelectorAll('.navigation ul li a');
-    
-        links.forEach(link => {
-            link.addEventListener('click', function(e) {
-                if (!navbar.classList.contains('clicked')) {
-                    e.preventDefault();
-                }
-            });
-        });
-    
-        navbar.addEventListener('click', function(e) {
-            e.stopPropagation();
-            navbar.classList.toggle('clicked');
-    
-            setTimeout(function() {
-                navbar.classList.toggle('closing');
-            }, 1000);
-        });
-    
-        document.addEventListener('click', function() {
-            navbar.classList.remove('clicked', 'closing');
-        });
-    
-        links.forEach(link => {
-            link.addEventListener('click', function() {
-                navbar.classList.remove('clicked', 'closing');
-            });
-        });
-    </script>
 
     <div class="conteudo">
         <h1 class="pagina">Sala de Estar</h1>     
