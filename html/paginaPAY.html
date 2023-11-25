@@ -114,6 +114,22 @@
                     <input type="tel" id="numeroTelemovel" name="numeroTelemovel" required maxlength="9" minlength="9" placeholder="960000000">
                 </form>
             </div>
+
+            <div class="botaoDePagamento">
+                <button id="finalizarCompraBtn" onclick="finalizarCompra()">Pagar</button>
+                <div id="animacaoContainer">
+                    <div id="verificacaoAnimacao"></div>
+                </div> 
+            </div>
+            
+
+            <div id="modalAviso">
+                <div id="caixaAviso">
+                    <div id="avisoCompra">Compra efetuada!</div>
+                    <button id="fecharModal" onclick="fecharModal()">Fechar</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
