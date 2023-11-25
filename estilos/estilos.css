@@ -645,7 +645,19 @@ select {
     display: block;
     margin-top: 15px;
     margin-left: 150px;
-    margin-right: 650px;
+    margin-right: 170px;
+}
+
+#imgVISA {
+    width: 250px;
+    height: auto;
+    margin-left: 230px;
+}
+
+#imgWAY {
+    width: 150px;
+    height: auto;
+    margin-left: 330px;
 }
 
 .payBTN {
@@ -864,3 +876,4 @@ button:hover {
     font-size: 16px;
     margin-top: 20px;
 }
+

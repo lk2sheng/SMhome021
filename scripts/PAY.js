@@ -4,11 +4,15 @@
     function showCartaoForm() {
         document.getElementById('cartaoPay').style.display = 'block';
         document.getElementById('mbwayPay').style.display = 'none';
+        document.getElementById('imgVISA').style.display = 'block';
+        document.getElementById('imgWAY').style.display = 'none';
     }
     
     function showMbwayForm() {
         document.getElementById('cartaoPay').style.display = 'none';
         document.getElementById('mbwayPay').style.display = 'block';
+        document.getElementById('imgVISA').style.display = 'none';
+        document.getElementById('imgWAY').style.display = 'block';
     }
 
     function formatarCartao() {
