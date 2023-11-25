@@ -10,7 +10,8 @@
     <script src="scripts/navbar.js"></script>
 </head>
 <body class="homeBackground">
-    <div class="titulo">
+    <div class='overlay'>
+        <div class="titulo">
         <h1>SMARTHOME</h1>
         <i class="bi bi-bell" id="notificacoes-icon"></i>
         <i class="bi bi-person" id="user-icon"></i>
@@ -20,73 +21,75 @@
             <li><a href="#">Terminar Sessão</a></li>
             <li><a href="#">Sair</a></li>
         </ul>
-    </div>
-    <nav class="navigation" id="navbar">
-        <ul>
-            <li class="list active">
-                <a href="HOME.html">
-                    <span class="icon"><i class="bi bi-house"></i></span>
-                    <span class="title">HOME</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="html/SALA.html">
-                    <span class="icon"><i class="bi bi-display"></i></span>
-                    <span class="title">SALA DE ESTAR</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="html/COZINHA.html">
-                    <span class="icon"><i class="bi bi-fire"></i></span>
-                    <span class="title">COZINHA</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="html/QUARTO.html">
-                    <span class="icon"><i class="bi bi-moon-stars"></i></span>
-                    <span class="title">QUARTO</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="html/CASADEBANHO.html">
-                    <span class="icon"><i class="bi bi-badge-wc-fill"></i></span>
-                    <span class="title">CASA DE BANHO</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="html/AGENDAMENTOS.html">
-                    <span class="icon"><i class="bi bi-calendar-event"></i></span>
-                    <span class="title">AGENDAMENTOS</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="#">
-                    <span class="icon"><i class="bi bi-plus-circle-dotted"></i></span>
-                    <span class="title">ADICIONAR</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+        </div>
+        <nav class="navigation" id="navbar">
+            <ul>
+                <li class="list active">
+                    <a href="HOME.html">
+                        <span class="icon"><i class="bi bi-house"></i></span>
+                        <span class="title">HOME</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="html/SALA.html">
+                        <span class="icon"><i class="bi bi-display"></i></span>
+                        <span class="title">SALA DE ESTAR</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="html/COZINHA.html">
+                        <span class="icon"><i class="bi bi-fire"></i></span>
+                        <span class="title">COZINHA</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="html/QUARTO.html">
+                        <span class="icon"><i class="bi bi-moon-stars"></i></span>
+                        <span class="title">QUARTO</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="html/CASADEBANHO.html">
+                        <span class="icon"><i class="bi bi-badge-wc-fill"></i></span>
+                        <span class="title">CASA DE BANHO</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="html/AGENDAMENTOS.html">
+                        <span class="icon"><i class="bi bi-calendar-event"></i></span>
+                        <span class="title">AGENDAMENTOS</span>
+                    </a>
+                </li>
+                <li class="list">
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-plus-circle-dotted"></i></span>
+                        <span class="title">ADICIONAR</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
 
 
-    <div class="conteudo">
-        <div class="informacoes">
-            <div class="temperatura">
-                <p><i class="bi bi-thermometer"></i> 25°C</p>
-            </div>
-            <div class="local">
-                <p><i class="bi bi-geo-alt"></i>Campo Grande</p>
-            </div>
-            <div class="hora">
-                <h1 id="hora">00:00:00</h1>
-            </div>
-            <div class="data">
-                <p><i class="bi bi-calendar"></i> <span id="dsemana"></span></p>
-                <p id="data">2 de Novembro de 2023</p>
+        <div class="conteudo">
+            <div class="informacoes">
+                <div class="temperatura">
+                    <p><i class="bi bi-thermometer"></i> 25°C</p>
+                </div>
+                <div class="local">
+                    <p><i class="bi bi-geo-alt"></i>Campo Grande</p>
+                </div>
+                <div class="hora">
+                    <h1 id="hora">00:00:00</h1>
+                </div>
+                <div class="data">
+                    <p><i class="bi bi-calendar"></i> <span id="dsemana"></span></p>
+                    <p id="data">2 de Novembro de 2023</p>
+                </div>
             </div>
         </div>
     </div>
+    
 </body>
 </html>
 
