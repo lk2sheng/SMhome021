@@ -23,7 +23,7 @@
     function formatarValidade() {
         let validade = document.getElementById('validade').value;
 
-        validade = validade.replace(/\D/g, ''); // Remove caracteres não numéricos
+        validade = validade.replace(/\D/g, ''); 
         if (validade.length > 2) {
             validade = validade.substring(0, 2) + '/' + validade.substring(2);
         }
@@ -38,22 +38,59 @@
         var CVV = document.getElementById('CVV').value;
         var numeroTelemovel = document.getElementById('numeroTelemovel').value;
     
-        if ((numeroCartao && nomeUser && validade && CVV) || numeroTelemovel) {
+        var camposCartaoPreenchidos = numeroCartao && nomeUser && validade && CVV;
+        var campoTelemovelPreenchido = numeroTelemovel;
+    
+        document.getElementById('numeroCartao').style.border = '1px solid #ccc';
+        document.getElementById('nomeUser').style.border = '1px solid #ccc';
+        document.getElementById('validade').style.border = '1px solid #ccc';
+        document.getElementById('CVV').style.border = '1px solid #ccc';
+        document.getElementById('numeroTelemovel').style.border = '1px solid #ccc';
+    
+        if (camposCartaoPreenchidos || campoTelemovelPreenchido) {
             document.getElementById('finalizarCompraBtn').disabled = true;
             document.getElementById('verificacaoAnimacao').style.display = 'inline-block';
     
             setTimeout(function() {
                 document.getElementById('verificacaoAnimacao').style.display = 'none';
-                document.getElementById('modalAviso').style.display = 'flex';
+                exibirAviso('Compra efetuada.');
                 document.getElementById('finalizarCompraBtn').disabled = false;
             }, 2000);
         } else {
-            alert('Preencha todos os campos de cartão ou MB WAY.');
+            
+            exibirAviso('Complete todos os campos com informações corretas.');
+        
+            if (!numeroCartao) document.getElementById('numeroCartao').style.border = '1px solid red';
+            if (!nomeUser) document.getElementById('nomeUser').style.border = '1px solid red';
+            if (!validade) document.getElementById('validade').style.border = '1px solid red';
+            if (!CVV) document.getElementById('CVV').style.border = '1px solid red';
+            if (!numeroTelemovel) document.getElementById('numeroTelemovel').style.border = '1px solid red';
         }
+    }
+    
+    function exibirAviso(mensagem) {
+
+        var avisoElement = document.getElementById('avisoCompra');
+        avisoElement.innerHTML = mensagem;
+
+        document.getElementById('modalAviso').style.display = 'flex';
+
+        setTimeout(function() {
+            document.getElementById('modalAviso').style.display = 'none';
+        }, 5000);
     }
     
     function fecharModal() {
         document.getElementById('modalAviso').style.display = 'none';
-        document.getElementById('finalizarCompraBtn').disabled = false; 
+        document.getElementById('finalizarCompraBtn').disabled = false;
+    
+        
+        var avisoElement = document.getElementById('avisoCompra');
+        var avisoMensagem = avisoElement.innerHTML;
+    
+        if (avisoMensagem.includes('Compra efetuada')) {
+            window.location.href = '../HOME.html';
+        }
     }
+    
     
