@@ -269,6 +269,7 @@ function changeMode(delta) {
     }
     currentMode = modes[currentModeIndex]; 
     currentModeDisplay.textContent = currentMode;
+    change=true;
 }
 
 function saveChanges() {

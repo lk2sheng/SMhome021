@@ -383,6 +383,21 @@ body {
    
 }
 
+.infosAC3 {
+    border: 2px solid #777;
+    border-radius: 15%;
+    height: 70px;
+    font-size: 2em;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: #f2f2f2;
+   
+}
+
+
+
 #temperature-buttons, #power-buttons, #mode-buttons{
     display: flex;
     justify-content: center;
@@ -514,6 +529,10 @@ form{
     width: 300px;
 }
 
+.form2{
+    width: 500px;
+}
+
 select {
     width: 100%;
     padding: 8px;
@@ -528,8 +547,14 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 10px;
+    
 }
 
+.time-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px; 
+}
 
 .scroll-item {
     padding: 8px;
@@ -544,6 +569,7 @@ select {
 
 .checkbox-group {
     display: flex;
+    justify-content: center;
 }
 
 .checkbox-group input {
