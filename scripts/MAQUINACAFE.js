@@ -51,7 +51,7 @@ function Scheduling(){
 }
 
 function Cancel(){
-    window.location.href = "AC WC.html";
+    window.location.href = "MAQUINACAFE.html";
 }
 
 function ScheduleCoffe(name,connection,temperature,mode, dayOfWeek, hour, minute) {
@@ -154,6 +154,7 @@ function toggleAC(state) {
     const currentModeDisplay = document.getElementById('currentMode');
     const ModeControl= document.getElementById("mode-coffe");
     const saveChangesButton = document.getElementById('guardarButton');
+    const schedulingButton = document.getElementById('agendamentosButton');
     
 
     if (state === 'on') {
@@ -171,6 +172,8 @@ function toggleAC(state) {
         ModeControl.style.borderColor ="#000";
         currentModeDisplay.style.borderColor ="#000";
         saveChangesButton.style.backgroundColor="green";
+        saveChangesButton.removeAttribute('disabled');
+        schedulingButton.removeAttribute('disabled');
         change=true;
 
     } else if (state === 'off') {
@@ -187,13 +190,9 @@ function toggleAC(state) {
         ModeControl.style.pointerEvents = "none"
         ModeControl.style.borderColor = '#777'; 
         currentModeDisplay.style.borderColor ="#777";
-        saveChangesButton.onmouseover = function() {
-            saveChangesButton.style.backgroundColor = '#555'; 
-        };
-        
-        saveChangesButton.onmouseout = function() {
-            saveChangesButton.style.backgroundColor = 'white'; 
-        };
+        saveChangesButton.style.backgroundColor="white";
+        saveChangesButton.setAttribute('disabled', 'true');
+        schedulingButton.setAttribute('disabled', 'true');
         change=true;
     }
 }
@@ -300,6 +299,10 @@ function Coffe(connection,temperature,mode){
 document.addEventListener('DOMContentLoaded', function() {
     populateTimeScrolls1();
     populateTimeScrolls2();
+    const saveChangesButton = document.getElementById('guardarButton');
+    saveChangesButton.setAttribute('disabled', 'true');
+    const schedulingButton = document.getElementById('agendamentosButton');
+    schedulingButton.setAttribute('disabled', 'true');
 });
 
 
