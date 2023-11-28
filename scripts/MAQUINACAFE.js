@@ -7,8 +7,6 @@ function defineEventHandlersParaElementosHTML(){
     const powerOffButton = document.getElementById('powerOffButton');
     const decreaseTemperature = document.getElementById('decreaseTemperature');
     const increaseTemperature = document.getElementById('increaseTemperature');
-    const decreasePower = document.getElementById('decreasePower');
-    const increasePower = document.getElementById('increasePower');
     const prevModeButton = document.getElementById('prevMode');
     const nextModeButton = document.getElementById('nextMode');
     const saveChangesButton = document.getElementById('guardarButton');
@@ -24,8 +22,6 @@ function defineEventHandlersParaElementosHTML(){
     powerOffButton.addEventListener('click', () => toggleAC('off'));
     decreaseTemperature.addEventListener('click', decreaseTemperatureValue);
     increaseTemperature.addEventListener('click', increaseTemperatureValue);
-    decreasePower.addEventListener('click', decreasePowerValue);
-    increasePower.addEventListener('click', increasePowerValue);
     prevModeButton.addEventListener('click', () => changeMode(-1));
     nextModeButton.addEventListener('click', () => changeMode(1));
     saveChangesButton.addEventListener('click', saveChanges);
@@ -55,14 +51,13 @@ function Scheduling(){
 }
 
 function Cancel(){
-    window.location.href = "AC SALA.html";
+    window.location.href = "AC WC.html";
 }
 
-function ScheduleAC(name,connection,temperature,power,mode, dayOfWeek, hour, minute) {
+function ScheduleCoffe(name,connection,temperature,mode, dayOfWeek, hour, minute) {
     this.name= name;
     this.connection = connection;
     this.temperature = temperature;
-    this.power = power;
     this.mode = mode;
     this.dayOfWeek = dayOfWeek;
     this.hour = hour;
@@ -80,7 +75,7 @@ function schedule() {
 
     if (selectedDays.length > 0 && selectedHour != undefined && selectedMinute != undefined) {
         
-        let ScheduleData = new ScheduleAC("AC SALA",isACOn,currentTemperature,currentPower,currentMode, selectedDays, selectedHour, selectedMinute);
+        let ScheduleData = new ScheduleCoffe("MÁQUINA DE CAFÉ",isCoffeOn,currentTemperature,currentMode, selectedDays, selectedHour, selectedMinute);
         
         let Schedule = JSON.parse(localStorage.getItem('Schedule')) || [];
         
@@ -94,7 +89,6 @@ function schedule() {
     }
     
 }
-
 
 function updateSelectedTime(selectedItem, value, selectedTimeId, containerId) {
     const selectedTimeElement = document.getElementById(selectedTimeId);
@@ -111,7 +105,6 @@ function updateSelectedTime(selectedItem, value, selectedTimeId, containerId) {
         selectedTimeElement.value = (value < 10 ? '0' : '') + value;
     } 
 }
-
 
 function populateTimeScrolls1() {
     const hourScroll = document.getElementById('hourScroll');
@@ -143,36 +136,29 @@ function populateTimeScrolls2() {
     }
 }
 
-
-let isACOn = false;
-let currentTemperature = 22;
-let currentPower = 2;
-const modes = ["RESFRIAMENTO", "AQUECIMENTO", "VENTILAÇÃO", "AUTOMÁTICO"];
+let isCoffeOn = false;
+let currentTemperature = 90;
+const modes = ["CURTO", "LONGO", "DUPLO", "AMERICANO", "CAFÉ COM LEITE"];
 let currentModeIndex = 0;
-let currentMode="AUTOMÁTICO"
+let currentMode="LONGO"
 let change = false;
 let previousTemperature = currentTemperature;
-let previousPower = currentPower;
 let previousMode = currentMode;
-let ACinfo = []
-
-
+let Coffeinfo = []
 
 
 function toggleAC(state) {
     const statusText = document.getElementById('status');
     const currentTemperatureDisplay = document.getElementById('currentTemperature');
-    const TemperatureControl= document.getElementById("temperature-control");
-    const currentPowerDisplay = document.getElementById('currentpower');
-    const PowerControl= document.getElementById("powercontrol");
+    const TemperatureControl= document.getElementById("temperature-coffe");
     const currentModeDisplay = document.getElementById('currentMode');
-    const ModeControl= document.getElementById("mode-control");
+    const ModeControl= document.getElementById("mode-coffe");
     const saveChangesButton = document.getElementById('guardarButton');
     
 
     if (state === 'on') {
-        isACOn = true;
-        statusText.textContent = 'O ar condicionado está ligado.';
+        isCoffeOn = true;
+        statusText.textContent = 'A Máquina de Café está ligada.';
         powerOnButton.classList.add('selected');
         powerOffButton.classList.remove('selected');
         statusText.style.color="green"
@@ -180,19 +166,15 @@ function toggleAC(state) {
         TemperatureControl.style.pointerEvents = "all";
         TemperatureControl.style.borderColor ="#000";
         currentTemperatureDisplay.style.borderColor ="#000";
-        PowerControl.style.color = '#000';
-        PowerControl.style.pointerEvents = "all";
-        PowerControl.style.borderColor ="#000";
-        currentPowerDisplay.style.borderColor ="#000";
         ModeControl.style.color = '#000';
         ModeControl.style.pointerEvents = "all";
         ModeControl.style.borderColor ="#000";
         currentModeDisplay.style.borderColor ="#000";
-        change=true;
         saveChangesButton.style.backgroundColor="green";
+        change=true;
 
     } else if (state === 'off') {
-        isACOn = false;
+        isCoffeOn = false;
         statusText.textContent = 'O ar condicionado está desligado.';
         powerOnButton.classList.remove('selected');
         powerOffButton.classList.add('selected');
@@ -201,72 +183,47 @@ function toggleAC(state) {
         TemperatureControl.style.pointerEvents = "none"
         TemperatureControl.style.borderColor = '#777'; 
         currentTemperatureDisplay.style.borderColor ="#777";
-        PowerControl.style.color = '#777'; 
-        PowerControl.style.pointerEvents = "none"
-        PowerControl.style.borderColor = '#777'; 
-        currentPowerDisplay.style.borderColor ="#777";
         ModeControl.style.color = '#777'; 
         ModeControl.style.pointerEvents = "none"
         ModeControl.style.borderColor = '#777'; 
         currentModeDisplay.style.borderColor ="#777";
+        saveChangesButton.onmouseover = function() {
+            saveChangesButton.style.backgroundColor = '#555'; 
+        };
+        
+        saveChangesButton.onmouseout = function() {
+            saveChangesButton.style.backgroundColor = 'white'; 
+        };
         change=true;
-        saveChangesButton.style.backgroundColor="green"
     }
 }
 
 function decreaseTemperatureValue() {
     const currentTemperatureDisplay = document.getElementById('currentTemperature');
-    const saveChangesButton = document.getElementById('guardarButton');
-    if (currentTemperature > 16) {
+    if (currentTemperature > 85) {
         currentTemperature--;
         currentTemperatureDisplay.textContent = currentTemperature + '°C';
         change = true;
-        saveChangesButton.style.backgroundColor="green"
+        
     }
 }
 
 function increaseTemperatureValue() {
     const currentTemperatureDisplay = document.getElementById('currentTemperature');
-    const saveChangesButton = document.getElementById('guardarButton');
-    if (currentTemperature < 30) {
+    if (currentTemperature < 100) {
         currentTemperature++;
         currentTemperatureDisplay.textContent = currentTemperature + '°C';
         change = true;
-        saveChangesButton.style.backgroundColor="green"
-    }
-}
-
-function decreasePowerValue() {
-    const currentPowerDisplay = document.getElementById('currentpower');
-    const saveChangesButton = document.getElementById('guardarButton');
-    if (currentPower> 1) {
-        currentPower--;
-        currentPowerDisplay.textContent = currentPower;
-        change = true;
-        saveChangesButton.style.backgroundColor="green"
-    }
-}
-
-function increasePowerValue() {
-    const currentPowerDisplay = document.getElementById('currentpower');
-    const saveChangesButton = document.getElementById('guardarButton');
-    if (currentPower < 5) {
-        currentPower++;
-        currentPowerDisplay.textContent = currentPower;
-        change = true;
-        saveChangesButton.style.backgroundColor="green"
+        
     }
 }
 
 function changeMode(delta) {
     const currentModeDisplay = document.getElementById('currentMode');
-    const saveChangesButton = document.getElementById('guardarButton');
-    
     currentModeIndex = (currentModeIndex + delta) % modes.length;
     if (currentModeIndex < 0) {
         currentModeIndex = modes.length - 1;
         change = true;
-        saveChangesButton.style.backgroundColor="green"
     }
     currentMode = modes[currentModeIndex]; 
     currentModeDisplay.textContent = currentMode;
@@ -276,7 +233,6 @@ function changeMode(delta) {
 function saveChanges() {
     if (change) {
         const newTemperature = currentTemperature;
-        const newPower = currentPower;
         const newMode = currentMode;
         const customDialog = document.getElementById('custom-dialog');
         const confirmYes = document.getElementById('confirm-yes');
@@ -287,17 +243,15 @@ function saveChanges() {
 
         confirmYes.addEventListener('click', function() {
             previousTemperature = newTemperature;
-            previousPower = newPower;
             previousMode = newMode;
             currentTemperature = newTemperature;
-            currentPower = newPower;
             currentMode = newMode;
             customDialog.style.display = 'none';
             window.location.href = "../HOME.html";
             
-            let ACData = new AC(isACOn,currentTemperature,currentPower,currentMode);
-            ACinfo.push(ACData);
-            localStorage.setItem("ACSALA",JSON.stringify(ACinfo));
+            let CoffeData = new Coffe(isCoffeOn,currentTemperature,currentMode);
+            Coffeinfo.push(CoffeData);
+            localStorage.setItem("MÁQUINACAFÉ",JSON.stringify(Coffeinfo));
             change = false;
 
         });
@@ -305,36 +259,30 @@ function saveChanges() {
         confirmNo.addEventListener('click', function() {
             customDialog.style.display = 'none';
             
-            let storedACInfo = localStorage.getItem("ACSALA");
-            if (storedACInfo) {
-                ACinfo = JSON.parse(storedACInfo);
-                const lastACData = ACinfo[ACinfo.length - 1];
-                if (lastACData) {
-                    isACOn = lastACData.connection;
-                    currentTemperature = lastACData.temperature;
-                    currentPower = lastACData.power;
-                    currentMode = lastACData.mode;
-                    if (isACOn){
+            let storedCoffeInfo = localStorage.getItem("MÁQUINACAFÉ");
+            if (storedCoffeInfo) {
+                Coffeinfo = JSON.parse(storedCoffeInfo);
+                const lastCoffeData = Coffeinfo[Coffeinfo.length - 1];
+                if (lastCoffeData) {
+                    isCoffeOn = lastCoffeData.connection;
+                    currentTemperature = lastCoffeData.temperature;
+                    currentMode = lastCoffeData.mode;
+                    if (isCoffeOn){
                         toggleAC("on")
                     }else{
                         toggleAC("off")
                     }
                     const currentTemperatureDisplay = document.getElementById('currentTemperature');
                     currentTemperatureDisplay.textContent = currentTemperature + '°C';
-                    const currentPowerDisplay = document.getElementById('currentpower');
-                    currentPowerDisplay.textContent = currentPower;
                     const currentModeDisplay = document.getElementById('currentMode');
                     currentModeDisplay.textContent = currentMode;
                 }
             }else{
                 currentTemperature = previousTemperature;
-                currentPower = previousPower;
                 currentMode = previousMode;
                 
                 const currentTemperatureDisplay = document.getElementById('currentTemperature');
                 currentTemperatureDisplay.textContent = currentTemperature + '°C';
-                const currentPowerDisplay = document.getElementById('currentpower');
-                currentPowerDisplay.textContent = currentPower;
                 const currentModeDisplay = document.getElementById('currentMode');
                 currentModeDisplay.textContent = currentMode;
             }
@@ -343,13 +291,11 @@ function saveChanges() {
     }
 }
 
-function AC(connection,temperature,power,mode){
+function Coffe(connection,temperature,mode){
     this.connection = connection;
     this.temperature = temperature;
-    this.power = power;
     this.mode = mode;
 }
-
 
 document.addEventListener('DOMContentLoaded', function() {
     populateTimeScrolls1();
@@ -379,28 +325,9 @@ function GoBack() {
 }
 
 function principal(){
-    let storedACInfo = localStorage.getItem("ACSALA");
-    
-    if (storedACInfo) {
-        ACinfo = JSON.parse(storedACInfo);
-        const lastACData = ACinfo[ACinfo.length - 1];
-        if (lastACData) {
-            isACOn = lastACData.connection;
-            currentTemperature = lastACData.temperature;
-            currentPower = lastACData.power;
-            currentMode = lastACData.mode;
-          
-            
-        }
-        if (isACOn){
-            toggleAC("on")
-        }
-    } 
-    
+
     const currentTemperatureDisplay = document.getElementById('currentTemperature');
     currentTemperatureDisplay.textContent = currentTemperature + '°C';
-    const currentPowerDisplay = document.getElementById('currentpower');
-    currentPowerDisplay.textContent = currentPower;
     const currentModeDisplay = document.getElementById('currentMode');
     currentModeDisplay.textContent = currentMode;
 
