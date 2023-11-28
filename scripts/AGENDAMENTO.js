@@ -163,7 +163,41 @@ function createScheduleBox(scheduleItem, index) {
         scheduleDetails.appendChild(deleteIcon);
         scheduleBox.appendChild(scheduleDetails);
     }
-    
+    if (scheduleItem.name == "ASPIRADOR") {
+        const scheduleDetails = document.createElement('div');
+        scheduleDetails.classList.add('schedule-details');
+
+        const deleteIcon = document.createElement('i');
+        deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
+        deleteIcon.setAttribute('data-index', index);
+        deleteIcon.addEventListener('click', function () {
+            const itemIndex = parseInt(this.getAttribute('data-index'));
+            schedule.splice(itemIndex, 1);
+            localStorage.setItem('Schedule', JSON.stringify(schedule));
+            scheduleContainer.removeChild(scheduleBox);
+        });
+
+        scheduleDetails.innerHTML = `
+            <p><b> ASPIRADOR </b></p>
+            <p><b><i class="bi bi-calendar" style="font-size: 20px;"></i> ${scheduleItem.dayOfWeek}</b></p>
+            <p><b><i class="bi bi-clock" style="font-size: 20px;"></i> INÍCIO:${scheduleItem.starthour}:${scheduleItem.startminute} | FIM: ${scheduleItem.endhour}: ${scheduleItem.endminute}</b></p>
+        `;
+        
+        if (scheduleItem.connection) {
+            scheduleDetails.innerHTML += `
+                <p><b> <i class="bi bi-lightning-fill text-warning" style="font-size: 20px;"></i> ESTADO: LIGAR </b></p>
+                <p><b> <i class="bi bi-gear-wide-connected" style="font-size: 20px;"></i> MODO: ${scheduleItem.mode}</b> </p>
+            `;
+        } else {
+            scheduleDetails.innerHTML += `
+            <p><b> <i class="bi bi-lightning-fill text-warning" style="font-size: 20px;"></i> ESTADO: LIGAR </b></p>
+                <p><b> <i class="bi bi-gear-wide-connected" style="font-size: 20px;"></i> MODO: ${scheduleItem.mode}</b> </p>
+            `;
+        }
+
+        scheduleDetails.appendChild(deleteIcon);
+        scheduleBox.appendChild(scheduleDetails);
+    }
     scheduleContainer.appendChild(scheduleBox);
 }
 

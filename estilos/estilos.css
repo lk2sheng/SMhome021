@@ -334,6 +334,7 @@ body {
     margin-top: 10px;
     border-radius: 5px;
     width: 120px;
+    background-color: white;
    
 }
 #powerOnButton.selected {
@@ -369,7 +370,7 @@ body {
    
 }
 
-.infoAC2, .infFrigorifico2 {
+.infoAC2 {
     border: 2px solid #777;
     padding: 10px;
     text-align: center;
@@ -380,8 +381,10 @@ body {
     background-color: #CCCCFF;
     width: 250px;
     justify-content: center;
+    
    
 }
+
 
 .infosAC3 {
     border: 2px solid #777;
@@ -396,6 +399,32 @@ body {
    
 }
 
+.infoAC4 {
+    width: 75%;
+    margin: 0 auto;
+    align-items: center;
+    padding: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.infoAC5 {
+    border: 2px solid #777;
+    padding: 10px;
+    text-align: center;
+    pointer-events: none;
+    color:#777;
+    border-radius: 5%;
+    margin: auto;
+    background-color: #CCCCFF;
+    width: 250px;
+    justify-content: center;
+    
+   
+}
 
 
 #temperature-buttons, #power-buttons, #mode-buttons{
