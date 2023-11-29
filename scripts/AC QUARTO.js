@@ -33,7 +33,7 @@ function defineEventHandlersParaElementosHTML(){
     schedulingButton.addEventListener("click", Scheduling);
     confirmButton.addEventListener('click', schedule);
     cancelButton.addEventListener('click', Cancel);
-    okButton.addEventListener('click', Cancel);
+    okButton.addEventListener('click', function (){window.location.href = "../HOME.html";});
 }
 
 function Menu_Perfil(){

@@ -92,7 +92,7 @@ function shuffleArray(array) {
     }
 
     //return array.slice(Math.floor(Math.random() * (array.length-1)));
-    return array
+    return array;
 }
 
 // Function to get or generate the randomized products
@@ -185,3 +185,5 @@ document.getElementById("search-box").addEventListener("input", function() {
     displayProducts1(filteredProducts1);
     displayProducts2(filteredProducts2);
 });
+
+window.addEventListener("load", principal);

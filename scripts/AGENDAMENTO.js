@@ -29,6 +29,9 @@ function createScheduleBox(scheduleItem, index) {
             schedule.splice(itemIndex, 1);
             localStorage.setItem('Schedule', JSON.stringify(schedule));
             scheduleContainer.removeChild(scheduleBox);
+            for (let i = 0; i < schedule.length; i++){
+                document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
+            }
         });
 
         scheduleDetails.innerHTML = `
@@ -66,6 +69,9 @@ function createScheduleBox(scheduleItem, index) {
             schedule.splice(itemIndex, 1);
             localStorage.setItem('Schedule', JSON.stringify(schedule));
             scheduleContainer.removeChild(scheduleBox);
+            for (let i = 0; i < schedule.length; i++){
+                document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
+            }
         });
 
         scheduleDetails.innerHTML = `
@@ -102,6 +108,9 @@ function createScheduleBox(scheduleItem, index) {
             schedule.splice(itemIndex, 1);
             localStorage.setItem('Schedule', JSON.stringify(schedule));
             scheduleContainer.removeChild(scheduleBox);
+            for (let i = 0; i < schedule.length; i++){
+                document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
+            }
         });
 
         scheduleDetails.innerHTML = `
@@ -139,6 +148,9 @@ function createScheduleBox(scheduleItem, index) {
             schedule.splice(itemIndex, 1);
             localStorage.setItem('Schedule', JSON.stringify(schedule));
             scheduleContainer.removeChild(scheduleBox);
+            for (let i = 0; i < schedule.length; i++){
+                document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
+            }
         });
 
         scheduleDetails.innerHTML = `
@@ -175,6 +187,10 @@ function createScheduleBox(scheduleItem, index) {
             schedule.splice(itemIndex, 1);
             localStorage.setItem('Schedule', JSON.stringify(schedule));
             scheduleContainer.removeChild(scheduleBox);
+
+            for (let i = 0; i < schedule.length; i++){
+                document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
+            }
         });
 
         scheduleDetails.innerHTML = `
@@ -210,6 +226,10 @@ function createScheduleBox(scheduleItem, index) {
             schedule.splice(itemIndex, 1);
             localStorage.setItem('Schedule', JSON.stringify(schedule));
             scheduleContainer.removeChild(scheduleBox);
+
+            for (let i = 0; i < schedule.length; i++){
+                document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
+            }
         });
 
         scheduleDetails.innerHTML = `
@@ -217,7 +237,6 @@ function createScheduleBox(scheduleItem, index) {
             <p><b><i class="bi bi-calendar" style="font-size: 20px;"></i> ${scheduleItem.dayOfWeek}</b></p>
             <p><b><i class="bi bi-clock" style="font-size: 20px;"></i> ${scheduleItem.hour}:${scheduleItem.minute}</b></p>
         `;
-        
         if (scheduleItem.connection) {
             scheduleDetails.innerHTML += `
                 <p><b> <i class="bi bi-lightning-fill text-warning" style="font-size: 20px;"></i> ESTADO: TIRAR </b></p>
@@ -245,7 +264,14 @@ function Menu_Perfil(){
 
 document.addEventListener('DOMContentLoaded', function() {
     schedule = JSON.parse(localStorage.getItem('Schedule')) || [];
-    const scheduleContainer = document.getElementById('scheduleContainer');
+    if (schedule.length == 0){
+        let container = document.getElementById('scheduleContainer');
+        let textBox = document.createElement("div");
+        textBox.classList.add('infoBox');
+
+        textBox.innerHTML = "Ainda não foram definidos agendamentos.";
+        container.appendChild(textBox);
+    }
 
     if (schedule.length === 0){
         const noScheduleMessage = document.createElement('p');
