@@ -932,3 +932,7 @@ button:hover {
     margin-top: 20px;
 }
 
+.no-schedule-message {
+    text-align: center;
+    font-size: 30px;
+}
