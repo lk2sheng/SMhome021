@@ -187,6 +187,7 @@ function createScheduleBox(scheduleItem, index) {
             schedule.splice(itemIndex, 1);
             localStorage.setItem('Schedule', JSON.stringify(schedule));
             scheduleContainer.removeChild(scheduleBox);
+
             for (let i = 0; i < schedule.length; i++){
                 document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
             }
@@ -225,6 +226,7 @@ function createScheduleBox(scheduleItem, index) {
             schedule.splice(itemIndex, 1);
             localStorage.setItem('Schedule', JSON.stringify(schedule));
             scheduleContainer.removeChild(scheduleBox);
+
             for (let i = 0; i < schedule.length; i++){
                 document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
             }
@@ -235,7 +237,6 @@ function createScheduleBox(scheduleItem, index) {
             <p><b><i class="bi bi-calendar" style="font-size: 20px;"></i> ${scheduleItem.dayOfWeek}</b></p>
             <p><b><i class="bi bi-clock" style="font-size: 20px;"></i> ${scheduleItem.hour}:${scheduleItem.minute}</b></p>
         `;
-
         if (scheduleItem.connection) {
             scheduleDetails.innerHTML += `
                 <p><b> <i class="bi bi-lightning-fill text-warning" style="font-size: 20px;"></i> ESTADO: TIRAR </b></p>
@@ -272,15 +273,22 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(textBox);
     }
 
-    schedule.sort((a, b) => {
-        const timeA = parseInt(a.hour) * 60 + parseInt(a.minute);
-        const timeB = parseInt(b.hour) * 60 + parseInt(b.minute);
-        return timeA - timeB;
-    });
+    if (schedule.length === 0){
+        const noScheduleMessage = document.createElement('p');
+        noScheduleMessage.textContent = 'Nenhum agendamento feito atualmente.';
+        noScheduleMessage.classList.add('no-schedule-message');
+        scheduleContainer.appendChild(noScheduleMessage);
+    } else {
+        schedule.sort((a, b) => {
+            const timeA = parseInt(a.hour) * 60 + parseInt(a.minute);
+            const timeB = parseInt(b.hour) * 60 + parseInt(b.minute);
+            return timeA - timeB;
+        });
 
-    schedule.forEach((item, index) => {
-        createScheduleBox(item, index);
-    });
+        schedule.forEach((item, index) => {
+            createScheduleBox(item, index);
+        });
+    }
 });
 
 function principal(){

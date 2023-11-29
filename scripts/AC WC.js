@@ -168,6 +168,8 @@ function toggleAC(state) {
     const currentModeDisplay = document.getElementById('currentMode');
     const ModeControl= document.getElementById("mode-control");
     const saveChangesButton = document.getElementById('guardarButton');
+    const powerOnButton = document.getElementById('powerOnButton');
+    const powerOffButton = document.getElementById('powerOffButton');
     
 
     if (state === 'on') {
@@ -269,6 +271,7 @@ function changeMode(delta) {
     }
     currentMode = modes[currentModeIndex]; 
     currentModeDisplay.textContent = currentMode;
+    change=true;
 }
 
 function saveChanges() {
