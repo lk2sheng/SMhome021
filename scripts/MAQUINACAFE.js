@@ -178,7 +178,7 @@ function toggleAC(state) {
 
     } else if (state === 'off') {
         isCoffeOn = false;
-        statusText.textContent = 'O ar condicionado está desligado.';
+        statusText.textContent = 'A Máquina de Café está desligada.';
         powerOnButton.classList.remove('selected');
         powerOffButton.classList.add('selected');
         statusText.style.color="red";
