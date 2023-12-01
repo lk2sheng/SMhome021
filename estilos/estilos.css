@@ -992,18 +992,16 @@ button:hover {
     clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
 }
 
-
-
 .search-form{
     position: absolute;
     top: 12%;
     right: -110%;
-    width: 30rem;
-    height: 2.5rem;
+    width: 50rem;
+    height: 4rem;
     background: var(--white);
     border-radius: .5rem;
     overflow: hidden;
-    display: flex;
+    display: none;
     align-items: center;
     box-shadow: var(--box-shadow);
 }
@@ -1012,6 +1010,7 @@ button:hover {
     right: 2rem;
     transition: .4s linear;
     z-index: 99999;
+    display: flex;
 }
 
 .search-form input{
@@ -1080,8 +1079,8 @@ button:hover {
 }
 
 .frigo .box-container .box img{
-    /*margin: 1rem 0;
-    height: 12rem;*/
+    width: 8.5em;
+    height: 8.5em;
 }
 
 .frigo .box-container .box h3{
