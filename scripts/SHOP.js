@@ -14,7 +14,6 @@ class ShopItem {
 
 let searchFrom = document.querySelector(".search-form");
 
-//imagens estão erradas
 const buyList = [new ShopItem("Farinha", "../media/farinha.jpg", 1.79, 1), 
     new ShopItem("Leite", "../media/image-firgo-2.jpg", 2.40, 1), 
 new ShopItem("Ovos", "../media/image-firgo-10.jpg", 2.20, 1)];
@@ -81,7 +80,7 @@ function displayItems() {
 
         const addButton = document.createElement("button");
         addButton.classList.add("addButton");
-        addButton.id = buyList[i].name;
+        addButton.id = "add"+buyList[i].name;
         addButton.innerText = "Adicionar ao carrinho";
         
 
@@ -115,7 +114,7 @@ function displayCartItems() {
 
         const removeButton = document.createElement("button");
         removeButton.classList.add("removeItemButton");
-        removeButton.id = cartItem.name;
+        removeButton.id = "remove"+cartItem.name;
         removeButton.innerText = "remover";
 
         document.getElementById("cartBox").prepend(cartItemBox);
@@ -123,15 +122,17 @@ function displayCartItems() {
         cartItemBox.appendChild(infoDiv);
         infoDiv.appendChild(infoButton);
         cartItemBox.appendChild(removeButton);
-        
-        printTotal();
+        console.log(removeButton);
+        removeButton.addEventListener("click", function() {removeFromCart(removeButton);});
+
     }
+    printTotal();
 }
 
 function addToCart(button){
     let cartItem = null;
     for (let i=0 ; i < buyList.length; i++){
-        if (buyList[i].name == button.id) {
+        if ("add"+buyList[i].name == button.id) {
             if (!cart.includes(buyList[i])) {
                 cart.push(buyList[i]);
                 console.log(cart);
@@ -154,7 +155,7 @@ function addToCart(button){
 
                 const removeButton = document.createElement("button");
                 removeButton.classList.add("removeItemButton");
-                removeButton.id = cartItem.name;
+                removeButton.id = "remove"+cartItem.name;
                 removeButton.innerText = "remover";
 
                 document.getElementById("cartBox").prepend(cartItemBox);
@@ -165,18 +166,19 @@ function addToCart(button){
 
                 removeButton.addEventListener("click", function() {removeFromCart(removeButton);});
 
-                uploadCartToSessionStorage();
-                printTotal();
             }
         }
     }
+
+    uploadCartToSessionStorage();
+    printTotal();
 
 }
 
 function removeFromCart(button) {
     let removed = false;
     for (let i=0 ; i < cart.length; i++){
-        if ((cart[i].name == button.id) && (removed == false)) {
+        if (("remove"+cart[i].name == button.id) && (removed == false)) {
             cart.splice(i, 1);
 
             button.parentElement.remove();
@@ -184,6 +186,7 @@ function removeFromCart(button) {
 
             removed = true;
             printTotal();
+            console.log(cart)
         }
     }
 }
