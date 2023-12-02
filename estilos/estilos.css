@@ -45,7 +45,7 @@ html{
 #search_icon{
     font-size: 30px;
     cursor: pointer;
-    margin-left: auto;
+    margin-left: 26em;
     margin-right: 35px;
 }
 
@@ -54,6 +54,7 @@ html{
     cursor: pointer;
     position: relative;
     margin-right: 30px;
+    margin-left: auto;
 }
 
 #user-icon{
