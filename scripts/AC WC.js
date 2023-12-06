@@ -33,7 +33,7 @@ function defineEventHandlersParaElementosHTML(){
     schedulingButton.addEventListener("click", Scheduling);
     confirmButton.addEventListener('click', schedule);
     cancelButton.addEventListener('click', Cancel);
-    okButton.addEventListener('click', function (){window.location.href = "../HOME.html";});
+    okButton.addEventListener('click', SchedulePage);
 }
 
 function Menu_Perfil(){
@@ -56,6 +56,10 @@ function Scheduling(){
 
 function Cancel(){
     window.location.href = "AC WC.html";
+}
+
+function SchedulePage(){
+    window.location.href = "AGENDAMENTOS.html";
 }
 
 function ScheduleAC(name,connection,temperature,power,mode, dayOfWeek, hour, minute) {

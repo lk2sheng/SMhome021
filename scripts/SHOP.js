@@ -28,26 +28,6 @@ let cart = [];
 //});
 
 
-
-function scrollHelper() {
-    // Get the scroll position
-    let scrollPosition = window.scrollY;
-  
-    // Get the box element
-    let movingBox = document.querySelector(".navigation");
-  
-    // Define the scroll position at which you want the box to move
-    let triggerScroll = 10;
-  
-    // Check if the scroll position is beyond the trigger point
-    if (scrollPosition > triggerScroll) {
-        movingBox.classList.add("active");
-    } else {
-        movingBox.classList.remove("active");
-    }
-    
-};
-
 function Menu_Perfil(){
     const userMenu = document.getElementById('user-menu');
     if (userMenu.style.display === 'block') {
@@ -232,7 +212,6 @@ function defineEventHandlersParaElementosHTML(){
     const addButton = document.getElementsByClassName("addButton");
     const removeItemButtons = document.getElementsByClassName("removeItemButton");
 
-    document.addEventListener("scroll", scrollHelper);
     userIcon.addEventListener("click", Menu_Perfil);
     BackButton.addEventListener("click", GoBack);  
     
@@ -242,9 +221,9 @@ function defineEventHandlersParaElementosHTML(){
         addButton[i].addEventListener("click", function() {addToCart(addButton[i]);});  
     }
 
-    for (let i=0 ; i < removeItemButtons.length; i++){
-        removeItemButtons[i].addEventListener("click", function() {removeFromCart(removeItemButtons[i]);});  
-    }
+    //for (let i=0 ; i < removeItemButtons.length; i++){
+      //  removeItemButtons[i].addEventListener("click", function() {removeFromCart(removeItemButtons[i]);});  
+    //}
 }
 
 function printTotal(){

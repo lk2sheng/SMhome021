@@ -33,7 +33,7 @@ function defineEventHandlersParaElementosHTML(){
     schedulingButton.addEventListener("click", Scheduling);
     confirmButton.addEventListener('click', schedule);
     cancelButton.addEventListener('click', Cancel);
-    okButton.addEventListener('click', function (){window.location.href = "../HOME.html";});
+    okButton.addEventListener('click', SchedulePage);
 }
 
 function Menu_Perfil(){
@@ -52,6 +52,10 @@ function Scheduling(){
     } else {
         Horario.style.display = 'block';
     }
+}
+
+function SchedulePage(){
+    window.location.href = "AGENDAMENTOS.html";
 }
 
 function Cancel(){

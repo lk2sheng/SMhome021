@@ -20,18 +20,35 @@ function createScheduleBox(scheduleItem, index) {
     if (scheduleItem.name == "AC SALA") {
         const scheduleDetails = document.createElement('div');
         scheduleDetails.classList.add('schedule-details');
-
+    
         const deleteIcon = document.createElement('i');
         deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
         deleteIcon.setAttribute('data-index', index);
         deleteIcon.addEventListener('click', function () {
             const itemIndex = parseInt(this.getAttribute('data-index'));
-            schedule.splice(itemIndex, 1);
-            localStorage.setItem('Schedule', JSON.stringify(schedule));
-            scheduleContainer.removeChild(scheduleBox);
-            for (let i = 0; i < schedule.length; i++){
-                document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
-            }
+    
+            // Exibe o div de confirmação ao clicar no ícone de exclusão
+            document.getElementById('out-dialog').style.display = 'block';
+    
+            // Evento para o botão "SIM"
+            document.getElementById('yes').addEventListener('click', function () {
+                schedule.splice(itemIndex, 1);
+                localStorage.setItem('Schedule', JSON.stringify(schedule));
+                if (scheduleBox && scheduleBox.parentNode) {
+                    scheduleBox.parentNode.removeChild(scheduleBox);
+                }
+                for (let i = 0; i < schedule.length; i++) {
+                    document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
+                }
+                // Esconde o div de confirmação após a exclusão
+                document.getElementById('out-dialog').style.display = 'none';
+            });
+    
+            // Evento para o botão "NÃO"
+            document.getElementById('no').addEventListener('click', function () {
+                // Esconde o div de confirmação se o usuário clicar em "NÃO"
+                document.getElementById('out-dialog').style.display = 'none';
+            });
         });
 
         scheduleDetails.innerHTML = `
@@ -59,21 +76,35 @@ function createScheduleBox(scheduleItem, index) {
 
     if (scheduleItem.name == "AC QUARTO") {
         const scheduleDetails = document.createElement('div');
-        scheduleDetails.classList.add('schedule-details');
+    scheduleDetails.classList.add('schedule-details');
 
-        const deleteIcon = document.createElement('i');
-        deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
-        deleteIcon.setAttribute('data-index', index);
-        deleteIcon.addEventListener('click', function () {
-            const itemIndex = parseInt(this.getAttribute('data-index'));
+    const deleteIcon = document.createElement('i');
+    deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
+    deleteIcon.setAttribute('data-index', index);
+    deleteIcon.addEventListener('click', function () {
+        const itemIndex = parseInt(this.getAttribute('data-index'));
+
+        // Exibe o div de confirmação ao clicar no ícone de exclusão
+        document.getElementById('out-dialog').style.display = 'block';
+
+        // Evento para o botão "SIM"
+        document.getElementById('yes').addEventListener('click', function () {
             schedule.splice(itemIndex, 1);
             localStorage.setItem('Schedule', JSON.stringify(schedule));
             scheduleContainer.removeChild(scheduleBox);
-            for (let i = 0; i < schedule.length; i++){
+            for (let i = 0; i < schedule.length; i++) {
                 document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
             }
+            // Esconde o div de confirmação após a exclusão
+            document.getElementById('out-dialog').style.display = 'none';
         });
 
+        // Evento para o botão "NÃO"
+        document.getElementById('no').addEventListener('click', function () {
+            // Esconde o div de confirmação se o usuário clicar em "NÃO"
+            document.getElementById('out-dialog').style.display = 'none';
+        });
+    });
         scheduleDetails.innerHTML = `
             <p><b> AC QUARTO </b></p>
             <p><b><i class="bi bi-calendar" style="font-size: 20px;"></i> ${scheduleItem.dayOfWeek}</b></p>
@@ -99,18 +130,33 @@ function createScheduleBox(scheduleItem, index) {
     if (scheduleItem.name == "AC WC") {
         const scheduleDetails = document.createElement('div');
         scheduleDetails.classList.add('schedule-details');
-
+    
         const deleteIcon = document.createElement('i');
         deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
         deleteIcon.setAttribute('data-index', index);
         deleteIcon.addEventListener('click', function () {
             const itemIndex = parseInt(this.getAttribute('data-index'));
-            schedule.splice(itemIndex, 1);
-            localStorage.setItem('Schedule', JSON.stringify(schedule));
-            scheduleContainer.removeChild(scheduleBox);
-            for (let i = 0; i < schedule.length; i++){
-                document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
-            }
+    
+            // Exibe o div de confirmação ao clicar no ícone de exclusão
+            document.getElementById('out-dialog').style.display = 'block';
+    
+            // Evento para o botão "SIM"
+            document.getElementById('yes').addEventListener('click', function () {
+                schedule.splice(itemIndex, 1);
+                localStorage.setItem('Schedule', JSON.stringify(schedule));
+                scheduleContainer.removeChild(scheduleBox);
+                for (let i = 0; i < schedule.length; i++) {
+                    document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
+                }
+                // Esconde o div de confirmação após a exclusão
+                document.getElementById('out-dialog').style.display = 'none';
+            });
+    
+            // Evento para o botão "NÃO"
+            document.getElementById('no').addEventListener('click', function () {
+                // Esconde o div de confirmação se o usuário clicar em "NÃO"
+                document.getElementById('out-dialog').style.display = 'none';
+            });
         });
 
         scheduleDetails.innerHTML = `
@@ -139,18 +185,33 @@ function createScheduleBox(scheduleItem, index) {
     if (scheduleItem.name == "AC COZINHA") {
         const scheduleDetails = document.createElement('div');
         scheduleDetails.classList.add('schedule-details');
-
+    
         const deleteIcon = document.createElement('i');
         deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
         deleteIcon.setAttribute('data-index', index);
         deleteIcon.addEventListener('click', function () {
             const itemIndex = parseInt(this.getAttribute('data-index'));
-            schedule.splice(itemIndex, 1);
-            localStorage.setItem('Schedule', JSON.stringify(schedule));
-            scheduleContainer.removeChild(scheduleBox);
-            for (let i = 0; i < schedule.length; i++){
-                document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
-            }
+    
+            // Exibe o div de confirmação ao clicar no ícone de exclusão
+            document.getElementById('out-dialog').style.display = 'block';
+    
+            // Evento para o botão "SIM"
+            document.getElementById('yes').addEventListener('click', function () {
+                schedule.splice(itemIndex, 1);
+                localStorage.setItem('Schedule', JSON.stringify(schedule));
+                scheduleContainer.removeChild(scheduleBox);
+                for (let i = 0; i < schedule.length; i++) {
+                    document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
+                }
+                // Esconde o div de confirmação após a exclusão
+                document.getElementById('out-dialog').style.display = 'none';
+            });
+    
+            // Evento para o botão "NÃO"
+            document.getElementById('no').addEventListener('click', function () {
+                // Esconde o div de confirmação se o usuário clicar em "NÃO"
+                document.getElementById('out-dialog').style.display = 'none';
+            });
         });
 
         scheduleDetails.innerHTML = `
@@ -178,19 +239,33 @@ function createScheduleBox(scheduleItem, index) {
     if (scheduleItem.name == "ASPIRADOR") {
         const scheduleDetails = document.createElement('div');
         scheduleDetails.classList.add('schedule-details');
-
+    
         const deleteIcon = document.createElement('i');
         deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
         deleteIcon.setAttribute('data-index', index);
         deleteIcon.addEventListener('click', function () {
             const itemIndex = parseInt(this.getAttribute('data-index'));
-            schedule.splice(itemIndex, 1);
-            localStorage.setItem('Schedule', JSON.stringify(schedule));
-            scheduleContainer.removeChild(scheduleBox);
-
-            for (let i = 0; i < schedule.length; i++){
-                document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
-            }
+    
+            // Exibe o div de confirmação ao clicar no ícone de exclusão
+            document.getElementById('out-dialog').style.display = 'block';
+    
+            // Evento para o botão "SIM"
+            document.getElementById('yes').addEventListener('click', function () {
+                schedule.splice(itemIndex, 1);
+                localStorage.setItem('Schedule', JSON.stringify(schedule));
+                scheduleContainer.removeChild(scheduleBox);
+                for (let i = 0; i < schedule.length; i++) {
+                    document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
+                }
+                // Esconde o div de confirmação após a exclusão
+                document.getElementById('out-dialog').style.display = 'none';
+            });
+    
+            // Evento para o botão "NÃO"
+            document.getElementById('no').addEventListener('click', function () {
+                // Esconde o div de confirmação se o usuário clicar em "NÃO"
+                document.getElementById('out-dialog').style.display = 'none';
+            });
         });
 
         scheduleDetails.innerHTML = `
@@ -217,21 +292,34 @@ function createScheduleBox(scheduleItem, index) {
     if (scheduleItem.name == "MÁQUINA DE CAFÉ") {
         const scheduleDetails = document.createElement('div');
         scheduleDetails.classList.add('schedule-details');
-
+    
         const deleteIcon = document.createElement('i');
         deleteIcon.classList.add('fas', 'fa-trash-alt', 'delete-icon');
         deleteIcon.setAttribute('data-index', index);
         deleteIcon.addEventListener('click', function () {
             const itemIndex = parseInt(this.getAttribute('data-index'));
-            schedule.splice(itemIndex, 1);
-            localStorage.setItem('Schedule', JSON.stringify(schedule));
-            scheduleContainer.removeChild(scheduleBox);
-
-            for (let i = 0; i < schedule.length; i++){
-                document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
-            }
+    
+            // Exibe o div de confirmação ao clicar no ícone de exclusão
+            document.getElementById('out-dialog').style.display = 'block';
+    
+            // Evento para o botão "SIM"
+            document.getElementById('yes').addEventListener('click', function () {
+                schedule.splice(itemIndex, 1);
+                localStorage.setItem('Schedule', JSON.stringify(schedule));
+                scheduleContainer.removeChild(scheduleBox);
+                for (let i = 0; i < schedule.length; i++) {
+                    document.getElementsByClassName("delete-icon")[i].setAttribute('data-index', i);
+                }
+                // Esconde o div de confirmação após a exclusão
+                document.getElementById('out-dialog').style.display = 'none';
+            });
+    
+            // Evento para o botão "NÃO"
+            document.getElementById('no').addEventListener('click', function () {
+                // Esconde o div de confirmação se o usuário clicar em "NÃO"
+                document.getElementById('out-dialog').style.display = 'none';
+            });
         });
-
         scheduleDetails.innerHTML = `
             <p><b> MÁQUINA DE CAFÉ </b></p>
             <p><b><i class="bi bi-calendar" style="font-size: 20px;"></i> ${scheduleItem.dayOfWeek}</b></p>
