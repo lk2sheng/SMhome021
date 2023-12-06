@@ -31,7 +31,6 @@ document.querySelector("#search_icon").onclick = () =>{
 }
 
 
-
 function Menu_Perfil(){
     const userMenu = document.getElementById('user-menu');
     if (userMenu.style.display === 'block') {
@@ -58,6 +57,7 @@ function createProductBox(product) {
     if (product.expirationDate != "none"){
         var p = document.createElement("p");
         p.textContent = "Validade: " + product.expirationDate;
+
     }
     
 
