@@ -57,7 +57,7 @@
     
             setTimeout(function() {
                 document.getElementById('verificacaoAnimacao').style.display = 'none';
-                exibirAviso('Compra efetuada.');
+                exibirAviso('Compra efectuada com sucesso!');
                 document.getElementById('finalizarCompraBtn').disabled = false;
             }, 2000);
         } else {
@@ -79,10 +79,14 @@
 
         document.getElementById('modalAviso').style.display = 'flex';
 
-        setTimeout(function() {
-            document.getElementById('modalAviso').style.display = 'none';
-        }, 5000);
+      
     }
+
+    function GoBack() {
+        window.history.back();
+    }
+    
+    
     
     function fecharModal() {
         document.getElementById('modalAviso').style.display = 'none';
@@ -92,9 +96,22 @@
         var avisoElement = document.getElementById('avisoCompra');
         var avisoMensagem = avisoElement.innerHTML;
     
-        if (avisoMensagem.includes('Compra efetuada')) {
+        if (avisoMensagem.includes('Compra efectuada com sucesso!')) {
             window.location.href = '../HOME.html';
         }
     }
     
-    
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        const BackButton = document.getElementById('back-button');
+        BackButton.addEventListener("click", GoBack);
+        
+        const savedTotal = localStorage.getItem("totalValue");
+
+        const totalValueDiv = document.getElementById("totalValue");
+        if (totalValueDiv) {
+            totalValueDiv.textContent = "Total: " + savedTotal + "€";
+                totalValueDiv.style.fontWeight = "bold"; 
+                totalValueDiv.style.fontSize = "30px"; 
+        } 
+    });

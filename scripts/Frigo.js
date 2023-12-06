@@ -1,7 +1,7 @@
 "use strict";
 
 class Item {
-    constructor(name, expirationDate, image, n = 1) {
+    constructor(name, expirationDate, image, n) {
         this.name = name;
         this.expirationDate = expirationDate;
         this.image = image;
@@ -20,15 +20,25 @@ new Item ("Água com gás", "2024-12-30","../media/image-firgo-7.jpg",2),
 new Item("Cogumelos", "2024-02-22", "../media/image-firgo-5.jpg",3)];
 
 
-const suggested = [new Item("Farinha", "none", "../media/farinha.jpg"),
-  new Item("Leite", "none", "../media/image-firgo-2.jpg"),
-  new Item("Ovos", "none", "../media/image-firgo-10.jpg"), 
-  new Item('Frango', "none", "../media/image-firgo-9.jpg")];
+const suggested = [new Item("Farinha", "none", "../media/farinha.jpg",2),
+  new Item("Leite", "none", "../media/image-firgo-2.jpg",3),
+  new Item("Ovos", "none", "../media/image-firgo-10.jpg",6), 
+  new Item('Frango', "none", "../media/image-firgo-9.jpg",2)];
 
 
 document.querySelector("#search_icon").onclick = () =>{
     searchFrom.classList.toggle("active");
 }
+
+document.addEventListener("click", function (event) {
+    const searchForm = document.querySelector(".search-form");
+    const searchIcon = document.querySelector("#search_icon");
+
+    if (!searchForm.contains(event.target) && event.target !== searchIcon) {
+        // Clicked outside the search form and not on the search icon, hide it
+        searchForm.classList.remove("active");
+    }
+});
 
 
 function Menu_Perfil(){
@@ -54,19 +64,23 @@ function createProductBox(product) {
     var h3 = document.createElement("h3");
     h3.textContent = product.name;
 
-    if (product.expirationDate != "none"){
-        var p = document.createElement("p");
-        p.textContent = "Validade: " + product.expirationDate;
+    box.appendChild(h3);
+    box.appendChild(img);
 
+    if (product.n !== "none") {
+        var quantityParagraph = document.createElement("p");
+        quantityParagraph.innerHTML = "<strong>Quantidade:</strong> " + product.n;
+        box.appendChild(quantityParagraph);
     }
     
-
-    // Append elements to the box
-    box.appendChild(img);
-    box.appendChild(h3);
-    if (product.expirationDate != "none"){
-        box.appendChild(p);
+    if (product.expirationDate !== "none") {
+        var expirationParagraph = document.createElement("p");
+        expirationParagraph.textContent = "Validade: " + product.expirationDate;
+        box.appendChild(expirationParagraph);
     }
+
+    
+
 
     return box;
 }
