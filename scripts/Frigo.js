@@ -30,6 +30,15 @@ document.querySelector("#search_icon").onclick = () =>{
     searchFrom.classList.toggle("active");
 }
 
+document.addEventListener("click", function (event) {
+    const searchForm = document.querySelector(".search-form");
+    const searchIcon = document.querySelector("#search_icon");
+
+    if (!searchForm.contains(event.target) && event.target !== searchIcon) {
+        // Clicked outside the search form and not on the search icon, hide it
+        searchForm.classList.remove("active");
+    }
+});
 
 function Menu_Perfil(){
     const userMenu = document.getElementById('user-menu');
