@@ -82,7 +82,7 @@
 }
 
 .navigation {
-    position: absolute;
+    position: fixed;
     top: 80px;
     left: 0;
     bottom: 0px;
@@ -529,7 +529,7 @@ body {
 }
 
 .back-button {
-    position: relative;
+    position: fixed;
     bottom: 20px;
     left: 90px;
     cursor: pointer;
