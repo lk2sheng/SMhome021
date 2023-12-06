@@ -1,0 +1,186 @@
+:root{
+    --blue: #0077FF;
+    --white: #fff;
+    --black: black;
+    --grey: #333;
+    --light--text:rgb(89, 89, 89);
+    --box-shadow: 0 .5rem 1.5rem rgba(0,0,0.1);
+    --border: 2rem solid rgba(0,0,0.1);
+    --outline: .1rem solid rgb(177, 175, 175);
+}
+
+*{
+    padding: 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all 1s linear;
+}
+
+html{
+    
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+/*-------------------------FRIGORIFICO----------------------------*/
+
+.conteudofrigo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0; 
+}
+
+.paginafrigo {
+    margin-right: auto;
+    text-align: left; 
+    margin-top: 10px;
+    margin-left: 100px; 
+    align-items: flex-start;
+    font-size: 45px 
+}
+
+
+.search-form{
+    position: absolute;
+    top: 12%;
+    right: -110%;
+    width: 40rem;
+    height: 3rem;
+    background: var(--white);
+    border-radius: .5rem;
+    overflow: hidden;
+    display: none;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+}
+
+.search-form.active{
+    right: 2rem;
+    transition: .4s linear;
+    z-index: 99999;
+    display: flex;
+}
+
+.search-form input{
+    height: 100%;
+    width: 100%;
+    background: none;
+    text-transform: none;
+    font-size: 1rem;
+    color: var(--black);
+    padding: 0 1.5rem;
+}
+
+.search-form label{
+    font-size: 1.2rem;
+    padding-right: 1rem;
+    padding-top: 0.3rem;
+    color: var(--black);
+    cursor: pointer;
+}
+
+.search-form label:hover{
+    color: var(--blue);
+}
+
+.btn{
+    border: .2rem solid var(--black);
+    display: block;
+    padding: 0.1rem;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    width: 10rem;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    cursor: pointer;
+    background: none;
+    transition: 0.5s linear;
+    background-color: var(--blue);
+    color: var(--white);
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+   
+}
+
+.frigo .box-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 40px;
+    align-items: center;
+    overflow-y: auto;
+    max-height: 450px; 
+    margin-top: 0px;
+}
+
+.frigo .box-container .box{
+    padding: 2rem 1rem;
+    background: var(--white);
+    outline: var(--outline);
+    outline-offset: -1rem;
+    text-align: center;
+    
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    width: 180px;
+} 
+
+.frigo .box-container .box:hover{
+    box-shadow: 1px 1px 10px 4px var(--blue);
+}
+
+.frigo .box-container .box img{
+    width: 6.5em;
+    height: 6.5em;
+}
+
+.frigo .box-container .box h3{
+    /*font-size: 2.5rem;
+    line-height: 1.8;*/
+    color: var(--black);
+    margin: 0;
+}
+
+.frigo .box-container .box p{
+    /*font-size: 1.5rem;
+    line-height: 1.8;*/
+    color: var(--light--text);
+    padding-bottom: 1rem o;
+    margin: 0;
+}
+
+
+.Frigo_buttons{
+    display: flex;
+    align-items:baseline;
+    margin-left: 360px;
+    margin-right: auto;
+}
+
+.Frigo_buttons .btn{
+    margin: 0;
+    margin-left: 2rem;
+}
+.hidden {
+    display: none;
+}
+
+.disabled{
+    background-color: gray;
+    color: white;
+    cursor: auto;
+    pointer-events: none;
+}
+
+section {
+    width: 75%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-left: 200px;
+    margin-right: auto;
+    margin-top: 0.5rem;
+}

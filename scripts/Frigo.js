@@ -15,7 +15,10 @@ let searchFrom = document.querySelector(".search-form");
 
 const stock = [new Item("Queijo", "2023-12-20", "../media/image-firgo-6.jpg", 1), 
     new Item("Leite", "2023-11-3", "../media/image-firgo-2.jpg", 3), 
-new Item("Iogurte", "2023-12-25", "../media/image-firgo-13.jpg", 2)];
+new Item("Iogurte", "2023-12-25", "../media/image-firgo-13.jpg", 2),
+new Item ("Água com gás", "2024-12-30","../media/image-firgo-7.jpg",2),
+new Item("Cogumelos", "2024-02-22", "../media/image-firgo-5.jpg",3)];
+
 
 const suggested = [new Item("Farinha", "none", "../media/farinha.jpg"),
   new Item("Leite", "none", "../media/image-firgo-2.jpg"),
@@ -27,24 +30,6 @@ document.querySelector("#search_icon").onclick = () =>{
     searchFrom.classList.toggle("active");
 }
 
-function scrollHelper() {
-    // Get the scroll position
-    let scrollPosition = window.scrollY;
-  
-    // Get the box element
-    let movingBox = document.querySelector(".navigation");
-  
-    // Define the scroll position at which you want the box to move
-    let triggerScroll = 10;
-  
-    // Check if the scroll position is beyond the trigger point
-    if (scrollPosition > triggerScroll) {
-        movingBox.classList.add("active");
-    } else {
-        movingBox.classList.remove("active");
-    }
-    
-};
 
 function Menu_Perfil(){
     const userMenu = document.getElementById('user-menu');
@@ -71,7 +56,8 @@ function createProductBox(product) {
 
     if (product.expirationDate != "none"){
         var p = document.createElement("p");
-        p.textContent = "Consumir antes de: " + product.expirationDate;
+        p.textContent = "Validade: " + product.expirationDate;
+
     }
     
 
@@ -167,8 +153,6 @@ function mostrarSugestoes() {
     // Mostrar o conteúdo de sugestões
     document.getElementById("Frigo-sugestoes").classList.remove("hidden");
 
-    // Atualizar o texto do heading para "As Nossas Sugestões"
-    document.querySelector(".heading").innerHTML = 'As Nossas <span>Sugestões</span>';
 }
 
 
@@ -186,8 +170,7 @@ function mostrarFrigo() {
     // Mostrar o conteúdo de sugestões
     document.getElementById("Frigo_normal").classList.remove("hidden");
 
-    // Atualizar o texto do heading para "As Nossas Sugestões"
-    document.querySelector(".heading").innerHTML = 'O Teu <span>Frigorífico</span>';
+    
 }
 
 
@@ -196,7 +179,7 @@ function defineEventHandlersParaElementosHTML(){
     const itemInfoButton = document.getElementById('itemInfoButton');
     const BackButton = document.getElementById('back-button');
 
-    document.addEventListener("scroll", scrollHelper);
+    
     userIcon.addEventListener("click", Menu_Perfil);
     BackButton.addEventListener("click", GoBack);   
 
