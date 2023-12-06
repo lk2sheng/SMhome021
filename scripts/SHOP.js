@@ -51,6 +51,10 @@ function displayItems() {
 
         itemBox.innerHTML = "<h3>" + buyList[i].name + "</h3>";
         
+        const itemPrice = document.createElement("p");
+        itemPrice.classList.add("itemPrice");
+        itemPrice.innerText = buyList[i].price + "€";
+
         const infoDiv = document.createElement("div");
         infoDiv.classList.add("info-button");
 
@@ -66,6 +70,7 @@ function displayItems() {
 
         document.getElementById("items-container").appendChild(itemBox);
         document.getElementsByClassName("box")[i].appendChild(productImage);
+        document.getElementsByClassName("box")[i].appendChild(itemPrice);
         document.getElementsByClassName("box")[i].appendChild(infoDiv);
         document.getElementsByClassName("info-button")[i].appendChild(infoButton);
         document.getElementsByClassName("box")[i].appendChild(addButton);
@@ -84,6 +89,10 @@ function displayCartItems() {
         productImage.src = cartItem.image;
 
         cartItemBox.innerHTML = "<h3>" + cartItem.name + "</h3>";
+
+        const itemPrice = document.createElement("p");
+        itemPrice.classList.add("itemPrice");
+        itemPrice.innerText = cart[i].price + "€";
         
         const infoDiv = document.createElement("div");
         infoDiv.classList.add("cart-info-button");
@@ -99,10 +108,10 @@ function displayCartItems() {
 
         document.getElementById("cartBox").prepend(cartItemBox);
         cartItemBox.appendChild(productImage);
+        cartItemBox.appendChild(itemPrice);
         cartItemBox.appendChild(infoDiv);
         infoDiv.appendChild(infoButton);
         cartItemBox.appendChild(removeButton);
-        console.log(removeButton);
         removeButton.addEventListener("click", function() {removeFromCart(removeButton);});
 
     }
@@ -115,7 +124,6 @@ function addToCart(button){
         if ("add"+buyList[i].name == button.id) {
             if (!cart.includes(buyList[i])) {
                 cart.push(buyList[i]);
-                console.log(cart);
                 cartItem = buyList[i];
 
                 const cartItemBox = document.createElement("div");
@@ -125,6 +133,10 @@ function addToCart(button){
                 productImage.src = cartItem.image;
 
                 cartItemBox.innerHTML = "<h3>" + cartItem.name + "</h3>";
+
+                const itemPrice = document.createElement("p");
+                itemPrice.classList.add("itemPrice");
+                itemPrice.innerText = buyList[i].price + "€";
                 
                 const infoDiv = document.createElement("div");
                 infoDiv.classList.add("cart-info-button");
@@ -140,18 +152,19 @@ function addToCart(button){
 
                 document.getElementById("cartBox").prepend(cartItemBox);
                 cartItemBox.appendChild(productImage);
+                cartItemBox.appendChild(itemPrice);
                 cartItemBox.appendChild(infoDiv);
                 infoDiv.appendChild(infoButton);
                 cartItemBox.appendChild(removeButton);
 
                 removeButton.addEventListener("click", function() {removeFromCart(removeButton);});
-
             }
         }
     }
 
     uploadCartToSessionStorage();
     printTotal();
+    checkCart();
 
 }
 
@@ -166,7 +179,7 @@ function removeFromCart(button) {
 
             removed = true;
             printTotal();
-            console.log(cart)
+            checkCart();
         }
     }
 }
@@ -202,6 +215,17 @@ function downloadCartFromSessionStorage() {
 
 }
 
+function checkCart() {
+    console.log(cart);
+    if (cart.length == 0) {
+        document.getElementById("cartBox").style.display = 'none';
+    }
+    else {
+        document.getElementById("cartBox").style.display = 'block';
+    }
+
+}
+
 function uploadCartToSessionStorage() {
     sessionStorage.setItem("CARTINFO",JSON.stringify(cart));
 }
@@ -213,7 +237,7 @@ function defineEventHandlersParaElementosHTML(){
     const removeItemButtons = document.getElementsByClassName("removeItemButton");
 
     userIcon.addEventListener("click", Menu_Perfil);
-    BackButton.addEventListener("click", GoBack);  
+    BackButton.addEventListener("click", GoBack);
     
     displayItems(); 
 
@@ -238,6 +262,7 @@ function printTotal(){
 
 function principal(){
     downloadCartFromSessionStorage();
+    checkCart();
     defineEventHandlersParaElementosHTML();
 }
 
