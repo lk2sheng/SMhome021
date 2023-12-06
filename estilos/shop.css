@@ -1,28 +1,28 @@
-#items-container {
-    margin-left: 45px;
-}
 
 
 #cartBox {
-    margin-right: 15px;
     position: fixed;
     top: 75px;
     right: 5px;
-    border: 3px solid #000000;
+    border: 2px solid #000000;
+    border-radius: 4px;
     padding: 25px;
     background-color: aliceblue;
+    overflow-y: scroll;
+    max-height: 550px;
 }
 
 .cartItemBox {
-    margin-left: 10px;
     margin-bottom: 3px;
-    border: 2px solid #000000;
-
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    width: 150px;
+    padding: 0;
 }
 
 .cartItemBox h3{
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: var(--black);
     margin-top: 1px;
     margin-bottom: 1px;
@@ -32,59 +32,121 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 120px;
-    height: 90px;
+    width: 100px;
+    height: 70px;
 }
 
 
-#checkoutButton {
-    border: 1px solid #353232;
-    background-color: whitesmoke;
-    text-decoration: none;
-    color: #000000;
-    margin-top: 5px;
-    width: 60%;
-    height: 15px;
-    text-align: center;
+#checkoutButton{
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
 }
+
 
 #total {
     border: 1px solid #353232;
+    border-radius: 3px;
     background-color: whitesmoke;
     text-decoration: none;
     color: #000000;
     margin-top: 2px;
     text-align: center;
-    width: 10em;
+    padding: 5px 20px;
+    margin-bottom: 13px;
 }
 
 .removeItemButton {
     margin-top: 5px;
     margin-bottom: 5px;
-    
+    background-color: #e74c3c; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 8px 12px; 
+    cursor: pointer; 
+    display: block; 
+    margin: 0 auto; 
+    margin-bottom: 5px;
+}
+
+.quantity-buttons {
+    text-align: center;
+    display: flex; 
+    justify-content: center;
+}
+
+.addItemButton,
+.removeItemButton1 {
+    margin-left: 15px;
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+
+p{
+    text-align: center; 
+    padding: 0;
+    color: black;
+    font-weight: bold;
+    margin: 0;
+}
+
+.removeItemButton1 {
+    background-color:  #ff4d4d;
+}
+
+.removeItemButton1:hover {
+    background-color:  #ff6347;
+}
+
+.addItemButton:hover {
+    background-color:  #4CAF50;
+}
+
+.removeItemButton:hover {
+    background-color: #e74c3c;
 }
 
 h3 {
     font-size: 25px;
 }
 
-img {
-    max-width: 70%;
-    height: auto;
+h4 {
+    text-align: center; 
+    width: fit-content; 
+    margin: 0 auto;
 }
 
-.frigo #items-container{
-    width: 100%;
-    height: 50%;
+.frigo {
+    width: 65%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    margin-left: 200px;
+    margin-right: auto;
+    margin-top: 0.3rem;
+}
+
+.frigo #items-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-left: 40px;
+    justify-content: flex-start; /* Inicia os itens do começo da linha */
     align-items: center;
-
-
-  
+    overflow-y: auto;
+    max-height: 500px;
+    margin-left: 85px;
+    margin-top: 0px;
 }
+
 
 .frigo #items-container .box{
     padding: 2rem 1rem;
@@ -92,30 +154,56 @@ img {
     outline: var(--outline);
     outline-offset: -1rem;
     text-align: center;
-    box-shadow: var(--box-shadow);
-    margin-right: 30px;
-    margin-bottom: 20px;
+    
+    margin-right: 5px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    width: 180px;
 } 
 
-.frigo #items-container .box:hover{
-    box-shadow: 1px 1px 10px 4px var(--blue);
-}
 
 .frigo #items-container .box img{
-    margin: 1rem 0;
-    height: 7rem;
+    width: 6.5em;
+    height: 6.5em;
 }
 
 .frigo #items-container .box h3{
-    font-size: 2.5rem;
     color: var(--black);
-    margin-top: 1px;
-    margin-bottom: 1px;
+    margin: 0;
+    font-size:25px;
 }
 
 .frigo #items-container .box p{
-    font-size: 1.5rem;
-    line-height: 1.8;
-    color: var(--light--text);
-    padding-bottom: 1rem o;
+    color: black;
+    font-weight: bold; 
+    margin: 0;
 }
+
+.itemInfoButton{
+    background-color: #3498db;
+    color: white; 
+    border: none; 
+    padding:0;
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-top: 7px;
+    width: 160px;
+    height: 30px;
+    
+}
+
+
+.frigo #items-container .box .addButton{
+    background-color: #3498db;
+    color: white; 
+    border: none; 
+    padding: 0; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin-top: 4px;
+    width: 160px;
+    height: 30px;
+    margin-bottom: 0px;
+}
+
+

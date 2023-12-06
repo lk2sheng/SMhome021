@@ -14,7 +14,6 @@
     outline: none;
     border: none;
     text-decoration: none;
-    text-transform: capitalize;
     transition: all 1s linear;
 }
 
@@ -86,7 +85,6 @@ html{
 }
 
 .btn{
-    border: .2rem solid var(--black);
     display: block;
     padding: 0.1rem;
     font-size: 1.5rem;
@@ -97,8 +95,8 @@ html{
     cursor: pointer;
     background: none;
     transition: 0.5s linear;
-    background-color: var(--blue);
-    color: var(--white);
+    background-color: #3498db;
+    color: #fff;
     margin-right: auto;
     margin-left: auto;
     text-align: center;
@@ -129,9 +127,7 @@ html{
     width: 180px;
 } 
 
-.frigo .box-container .box:hover{
-    box-shadow: 1px 1px 10px 4px var(--blue);
-}
+
 
 .frigo .box-container .box img{
     width: 6.5em;
@@ -139,17 +135,15 @@ html{
 }
 
 .frigo .box-container .box h3{
-    /*font-size: 2.5rem;
-    line-height: 1.8;*/
+    font-size: 25px;
+    line-height: 1.8;
     color: var(--black);
     margin: 0;
 }
 
 .frigo .box-container .box p{
-    /*font-size: 1.5rem;
-    line-height: 1.8;*/
-    color: var(--light--text);
-    padding-bottom: 1rem o;
+    color: black;
+    font-weight: bold; 
     margin: 0;
 }
 
@@ -170,7 +164,7 @@ html{
 }
 
 .disabled{
-    background-color: gray;
+    background-color: #303f9f;
     color: white;
     cursor: auto;
     pointer-events: none;
