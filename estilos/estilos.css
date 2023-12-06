@@ -515,7 +515,7 @@ body {
 }
 
 .dialog button#confirm-no, .dialog button#no {
-    background-color: #e74c3c;
+    background-color: #ff4d4d;
     color: #fff;
     border: none;
 }
@@ -787,10 +787,18 @@ select {
     border-radius: 5px;
     transition: border-color 0.3s;
     outline: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #numeroCartao:focus {
     border-color:#2FACFE;
+}
+
+#totalValue{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #nomeUser {
@@ -851,6 +859,7 @@ select {
     justify-content: center;
     margin-bottom: 189.28px;
     margin-top: 130px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #numeroTelemovel {
@@ -882,7 +891,7 @@ button:hover {
 #finalizarCompraBtn {
     background-color: #4CAF50;
     color: white;
-    padding: 10px 20px;
+    padding: 16px 25px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -925,7 +934,6 @@ button:hover {
 #caixaAviso {
     background-color: #fff;
     padding: 20px;
-    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
@@ -936,14 +944,18 @@ button:hover {
 }
 
 #fecharModal {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #3498db;
+    color: #fff;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
     margin-top: 20px;
+}
+
+#fecharModal:hover {
+    background-color: #303f9f;
 }
 
 .infoBox {
@@ -959,60 +971,3 @@ button:hover {
     font-size: 2em;
 }
 
-/*-------------------------FRIGORIFICO----------------------------*/
-
-.heading{
-    text-align: center;
-    color: var(--black);
-}
-
-.heading span{
-    background: var(--blue);
-    color: var(--white);
-    display: inline-block;
-    padding: .5rem 3rem;
-    clip-path: polygon(100% 0, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
-}
-
-.search-form{
-    position: absolute;
-    top: 12%;
-    right: -110%;
-    width: 50rem;
-    height: 4rem;
-    background: var(--white);
-    border-radius: .5rem;
-    overflow: hidden;
-    display: none;
-    align-items: center;
-    box-shadow: var(--box-shadow);
-}
-
-.search-form.active{
-    right: 2rem;
-    transition: .4s linear;
-    z-index: 99999;
-    display: flex;
-}
-
-.search-form input{
-    height: 100%;
-    width: 100%;
-    background: none;
-    text-transform: none;
-    font-size: 1rem;
-    color: var(--black);
-    padding: 0 1.5rem;
-}
-
-.search-form label{
-    font-size: 1.2rem;
-    padding-right: 1rem;
-    padding-top: 0.3rem;
-    color: var(--black);
-    cursor: pointer;
-}
-
-.search-form label:hover{
-    color: var(--blue);
-}

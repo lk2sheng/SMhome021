@@ -96,7 +96,7 @@
                     placeholder="xxxx xxxx xxxx xxxx" oninput="formatarCartao()">
                 </form>
                 <form id="PayForm">
-                    <label for="nomeUser">Titular do Cartao</label>
+                    <label for="nomeUser">Titular do Cartão</label>
                     <input type="text" id="nomeUser" name="nomeUser" required>
                 </form>
                 <form id="PayForm">
@@ -112,10 +112,11 @@
 
             <div class="mbway_pay" id="mbwayPay" style="display:none;">
                 <form id="MBPayForm">
-                    <label for="numeroTelemovel"><h3>Número de Telemovel</h3></label>
+                    <label for="numeroTelemovel"><h3>Número de Telemóvel</h3></label>
                     <input type="tel" id="numeroTelemovel" name="numeroTelemovel" required maxlength="9" minlength="9" placeholder="960000000">
                 </form>
             </div>
+            <div id="totalValue"></div>
 
             <div class="botaoDePagamento">
                 <button id="finalizarCompraBtn" onclick="finalizarCompra()">Pagar</button>
@@ -127,7 +128,7 @@
 
             <div id="modalAviso">
                 <div id="caixaAviso">
-                    <div id="avisoCompra">Compra efetuada!</div>
+                    <div id="avisoCompra">Compra efectuada com sucesso!</div>
                     <button id="fecharModal" onclick="fecharModal()">Fechar</button>
                 </div>
             </div>
