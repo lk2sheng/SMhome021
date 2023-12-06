@@ -1,6 +1,5 @@
 "use strict"
 
-
     function showCartaoForm() {
         document.getElementById('cartaoPay').style.display = 'block';
         document.getElementById('mbwayPay').style.display = 'none';
@@ -59,6 +58,7 @@
                 document.getElementById('verificacaoAnimacao').style.display = 'none';
                 exibirAviso('Compra efectuada com sucesso!');
                 document.getElementById('finalizarCompraBtn').disabled = false;
+                uploadCartToSessionStorage();
             }, 2000);
         } else {
             
@@ -79,7 +79,6 @@
 
         document.getElementById('modalAviso').style.display = 'flex';
 
-      
     }
 
     function GoBack() {
@@ -100,7 +99,21 @@
             window.location.href = '../HOME.html';
         }
     }
+
+    function uploadCartToSessionStorage() {
+        sessionStorage.setItem("CARTINFO",JSON.stringify([]));
+    }
+
+    function GoBack() {
+        window.history.back();
+    }
     
+    function principal(){
+        document.getElementById('back-button').addEventListener("click",GoBack);
+    }
+    
+    
+
     document.addEventListener("DOMContentLoaded", function() {
         
         const BackButton = document.getElementById('back-button');
@@ -115,3 +128,4 @@
                 totalValueDiv.style.fontSize = "30px"; 
         } 
     });
+

@@ -361,23 +361,17 @@ document.addEventListener('DOMContentLoaded', function() {
         container.appendChild(textBox);
     }
 
-    if (schedule.length === 0){
-        const noScheduleMessage = document.createElement('p');
-        noScheduleMessage.textContent = 'Nenhum agendamento feito atualmente.';
-        noScheduleMessage.classList.add('no-schedule-message');
-        scheduleContainer.appendChild(noScheduleMessage);
-    } else {
-        schedule.sort((a, b) => {
-            const timeA = parseInt(a.hour) * 60 + parseInt(a.minute);
-            const timeB = parseInt(b.hour) * 60 + parseInt(b.minute);
-            return timeA - timeB;
-        });
+    schedule.sort((a, b) => {
+        const timeA = parseInt(a.hour) * 60 + parseInt(a.minute);
+        const timeB = parseInt(b.hour) * 60 + parseInt(b.minute);
+        return timeA - timeB;
+    });
 
         schedule.forEach((item, index) => {
             createScheduleBox(item, index);
         });
     }
-});
+);
 
 function principal(){
 

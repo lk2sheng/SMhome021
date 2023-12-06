@@ -54,6 +54,10 @@ function displayItems() {
         const productPrice = document.createElement("p");
         productPrice.textContent = "Preço: " + formattedPrice + "€";
         
+        const itemPrice = document.createElement("p");
+        itemPrice.classList.add("itemPrice");
+        itemPrice.innerText = buyList[i].price + "€";
+
         const infoDiv = document.createElement("div");
         infoDiv.classList.add("info-button");
 
@@ -86,6 +90,10 @@ function displayCartItems() {
         productImage.src = cartItem.image;
 
         cartItemBox.innerHTML = "<h3>" + cartItem.name + "</h3>";
+
+        const itemPrice = document.createElement("p");
+        itemPrice.classList.add("itemPrice");
+        itemPrice.innerText = cart[i].price + "€";
         
         const infoDiv = document.createElement("div");
         infoDiv.classList.add("cart-info-button");
@@ -97,6 +105,7 @@ function displayCartItems() {
 
         document.getElementById("cartBox").prepend(cartItemBox);
         cartItemBox.appendChild(productImage);
+        cartItemBox.appendChild(itemPrice);
         cartItemBox.appendChild(infoDiv);
 
         cartItemBox.appendChild(removeButton);
@@ -112,7 +121,7 @@ function addToCart(button){
         if ("add"+buyList[i].name == button.id) {
             if (!cart.includes(buyList[i])) {
                 cart.push(buyList[i]);
-    
+
                 cartItem = buyList[i];
 
                 const cartItemBox = document.createElement("div");
@@ -126,6 +135,7 @@ function addToCart(button){
                 const productTitle = document.createElement("h4");
                 productTitle.innerText = cartItem.name;
                 productTitle.style.fontSize = "20px"; 
+
 
                 const productQuantity = document.createElement("p");
                 productQuantity.innerText = "Quantidade: " + cartItem.n;
@@ -175,6 +185,7 @@ function addToCart(button){
                     removeFromCart(removeButton);
                 });
 
+
             }
 
         }
@@ -182,6 +193,7 @@ function addToCart(button){
 
     uploadCartToSessionStorage();
     printTotal();
+
 }
 
 function removeFromCart(button) {
@@ -195,6 +207,7 @@ function removeFromCart(button) {
 
             removed = true;
             printTotal();
+
         }
     }
 }
@@ -231,6 +244,7 @@ function downloadCartFromSessionStorage() {
 }
 
 
+
 function uploadCartToSessionStorage() {
     sessionStorage.setItem("CARTINFO",JSON.stringify(cart));
 }
@@ -244,7 +258,7 @@ function defineEventHandlersParaElementosHTML(){
 
     userIcon.addEventListener("click", Menu_Perfil);
     BackButton.addEventListener("click", GoBack);
-    
+
     
     displayItems(); 
 
@@ -273,6 +287,7 @@ function checkout() {
 
 function principal(){
     downloadCartFromSessionStorage();
+    checkCart();
     defineEventHandlersParaElementosHTML();
 }
 
