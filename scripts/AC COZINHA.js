@@ -62,29 +62,36 @@ function Cancel(){
     window.location.href = "AC COZINHA.html";
 }
 
-function ScheduleAC(name,connection,temperature,power,mode, dayOfWeek, hour, minute) {
+function ScheduleAC(name,connection,temperature,power,mode, dayOfWeek, starthour, startminute, endhour, endminute) {
     this.name= name;
     this.connection = connection;
     this.temperature = temperature;
     this.power = power;
     this.mode = mode;
     this.dayOfWeek = dayOfWeek;
-    this.hour = hour;
-    this.minute = minute;
+    this.starthour = starthour;
+    this.startminute = startminute;
+    this.endhour = endhour;
+    this.endminute = endminute;
 }
 
 function schedule() {
     const selectedDays = Array.from(document.querySelectorAll('.checkbox-group input:checked')).map(checkbox => checkbox.value);
     const selectedHourElement = document.getElementById('selectedHour');
     const selectedMinuteElement = document.getElementById('selectedMinute');
+    const selectedHourElement2 = document.getElementById('selectedHour2');
+    const selectedMinuteElement2 = document.getElementById('selectedMinute2');
+    
     const Dialog = document.getElementById("scheduleconfirmed");
     const Horario = document.getElementById('horario');
     const selectedHour = selectedHourElement.value;
     const selectedMinute = selectedMinuteElement.value;
+    const selectedHour2 = selectedHourElement2.value;
+    const selectedMinute2 = selectedMinuteElement2.value;
 
-    if (selectedDays.length > 0 && selectedHour != undefined && selectedMinute != undefined) {
+    if (selectedDays.length > 0 && selectedHour != undefined && selectedMinute != undefined && selectedHour2 != undefined && selectedMinute2 != undefined) {
         
-        let ScheduleData = new ScheduleAC("AC COZINHA",isACOn,currentTemperature,currentPower,currentMode, selectedDays, selectedHour, selectedMinute);
+        let ScheduleData = new ScheduleAC("AC COZINHA",isACOn,currentTemperature,currentPower,currentMode, selectedDays, selectedHour, selectedMinute, selectedHour2, selectedMinute2);
         
         let Schedule = JSON.parse(localStorage.getItem('Schedule')) || [];
         
@@ -115,9 +122,9 @@ function updateSelectedTime(selectedItem, value, selectedTimeId, containerId) {
     } 
 }
 
-
 function populateTimeScrolls1() {
     const hourScroll = document.getElementById('hourScroll');
+    const hourScroll2 = document.getElementById('hourScroll2');
     
     for (let hour = 0; hour < 24; hour++) {
         const hourOption = document.createElement('div');
@@ -129,10 +136,24 @@ function populateTimeScrolls1() {
         });
         hourScroll.appendChild(hourOption);
     }
+
+    for (let hour = 0; hour < 24; hour++) {
+        const hourOption = document.createElement('div');
+        hourOption.textContent = (hour < 10 ? '0' : '') + hour;
+        hourOption.classList.add('scroll-item');
+        hourOption.dataset.value = hour;
+        hourOption.addEventListener('click', function() {
+            updateSelectedTime(hourOption, hourOption.dataset.value, 'selectedHour2', 'hourScroll2');
+        });
+        hourScroll2.appendChild(hourOption);
+    }
+
 }
+
 
 function populateTimeScrolls2() {
     const minuteScroll = document.getElementById('minuteScroll');
+    const minuteScroll2 = document.getElementById('minuteScroll2');
     
     for (let minute = 0; minute < 60; minute++) {
         const minuteOption = document.createElement('div');
@@ -144,8 +165,18 @@ function populateTimeScrolls2() {
         });
         minuteScroll.appendChild(minuteOption);
     }
-}
 
+    for (let minute = 0; minute < 60; minute++) {
+        const minuteOption = document.createElement('div');
+        minuteOption.textContent = (minute < 10 ? '0' : '') + minute;
+        minuteOption.classList.add('scroll-item');
+        minuteOption.dataset.value = minute;
+        minuteOption.addEventListener('click', function() {
+            updateSelectedTime(minuteOption, minuteOption.dataset.value, 'selectedMinute2', 'minuteScroll2');
+        });
+        minuteScroll2.appendChild(minuteOption);
+    }
+}
 
 let isACOn = false;
 let currentTemperature = 22;
@@ -178,7 +209,7 @@ function toggleAC(state) {
         statusText.textContent = 'O ar condicionado está ligado.';
         powerOnButton.classList.add('selected');
         powerOffButton.classList.remove('selected');
-        statusText.style.color="green"
+        statusText.style.color="#4CAF50";
         TemperatureControl.style.color = '#000';
         TemperatureControl.style.pointerEvents = "all";
         TemperatureControl.style.borderColor ="#000";
@@ -192,7 +223,7 @@ function toggleAC(state) {
         ModeControl.style.borderColor ="#000";
         currentModeDisplay.style.borderColor ="#000";
         change=true;
-        saveChangesButton.style.backgroundColor="green";
+        
 
     } else if (state === 'off') {
         isACOn = false;
@@ -213,7 +244,7 @@ function toggleAC(state) {
         ModeControl.style.borderColor = '#777'; 
         currentModeDisplay.style.borderColor ="#777";
         change=true;
-        saveChangesButton.style.backgroundColor="green"
+        
     }
 }
 
@@ -224,7 +255,7 @@ function decreaseTemperatureValue() {
         currentTemperature--;
         currentTemperatureDisplay.textContent = currentTemperature + '°C';
         change = true;
-        saveChangesButton.style.backgroundColor="green"
+        
     }
 }
 
@@ -235,7 +266,7 @@ function increaseTemperatureValue() {
         currentTemperature++;
         currentTemperatureDisplay.textContent = currentTemperature + '°C';
         change = true;
-        saveChangesButton.style.backgroundColor="green"
+        
     }
 }
 
@@ -246,7 +277,7 @@ function decreasePowerValue() {
         currentPower--;
         currentPowerDisplay.textContent = currentPower;
         change = true;
-        saveChangesButton.style.backgroundColor="green"
+       
     }
 }
 
@@ -257,7 +288,7 @@ function increasePowerValue() {
         currentPower++;
         currentPowerDisplay.textContent = currentPower;
         change = true;
-        saveChangesButton.style.backgroundColor="green"
+        
     }
 }
 
@@ -268,7 +299,7 @@ function changeMode(delta) {
     if (currentModeIndex < 0) {
         currentModeIndex = modes.length - 1;
         change = true;
-        saveChangesButton.style.backgroundColor="green"
+        
     }
     currentMode = modes[currentModeIndex]; 
     currentModeDisplay.textContent = currentMode;

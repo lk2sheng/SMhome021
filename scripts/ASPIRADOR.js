@@ -81,7 +81,6 @@ function schedule() {
 
     if (selectedDays.length > 0 && selectedHour != undefined && selectedMinute != undefined && selectedHour2 != undefined && selectedMinute2 != undefined) {
 
-        console.log(selectedHour2)
         
         let ScheduleData = new ScheduleCleaner("ASPIRADOR", isCleanerOn, currentMode, selectedDays, selectedHour, selectedMinute, selectedHour2, selectedMinute2);
         
@@ -195,14 +194,14 @@ function toggleCleaner(state) {
         statusText.textContent = 'O Aspirador está ligado.';
         powerOnButton.classList.add('selected');
         powerOffButton.classList.remove('selected');
-        statusText.style.color="green"
+        statusText.style.color="#4CAF50";
         
         ModeControl.style.color = '#000';
         ModeControl.style.pointerEvents = "all";
         ModeControl.style.borderColor ="#000";
         currentModeDisplay.style.borderColor ="#000";
         change=true;
-        saveChangesButton.style.backgroundColor="green";
+        
 
     } else if (state === 'off') {
         isCleanerOn = false;
@@ -215,7 +214,7 @@ function toggleCleaner(state) {
         ModeControl.style.borderColor = '#777'; 
         currentModeDisplay.style.borderColor ="#777";
         change=true;
-        saveChangesButton.style.backgroundColor="green"
+        
     }
 }
 
@@ -226,7 +225,7 @@ function changeMode(delta) {
     if (currentModeIndex < 0) {
         currentModeIndex = modes.length - 1;
         change = true;
-        saveChangesButton.style.backgroundColor="green"
+        
     }
     change=true;
     currentMode = modes[currentModeIndex]; 
