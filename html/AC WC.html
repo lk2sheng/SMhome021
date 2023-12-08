@@ -153,18 +153,34 @@
                     <label for="sabado">S</label>
                 </div>
         
-                <label for="selectedHour" id="selectedHour"><b>HORA</b></label>
-                <div class="scroll-container" id="hourScroll"></div>
-        
-                <label for="selectedMinute" id="selectedMinute"><b>MINUTOS</b></label>
-                <div class="scroll-container" id="minuteScroll"></div>
+                <div class="time-group">
+                    <div class="time-block">
+                        <label for="selectedHour" id="selectedHour"><b>HORA INICIAL</b></label>
+                        <div class="scroll-container" id="hourScroll"></div>
+                    </div>
+                    <div class="time-block">
+                        <label for="selectedHour2" id="selectedHour2"><b>HORA FINAL</b></label>
+                        <div class="scroll-container" id="hourScroll2"></div>
+                    </div>
+                </div>
+                
+                <div class="time-group">
+                    <div class="time-block">
+                        <label for="selectedMinute" id="selectedMinute"><b>MINUTOS</b></label>
+                        <div class="scroll-container" id="minuteScroll"></div>
+                    </div>
+                    <div class="time-block">
+                        <label for="selectedMinute2" id="selectedMinute2"><b>MINUTOS</b></label>
+                        <div class="scroll-container" id="minuteScroll2"></div>
+                    </div>
+                </div>
             </form>
             <button id="cancelButton">Cancelar</button>
             <button id="confirmButton">Confirmar</button>
         </div>
         <div id="scheduleconfirmed" class="scheduleconfirmed">
             <p>Agendamento realizado com sucesso.</p>
-            <button id="okButton"><b>OK</b></button>
+            <button id="okButton"><b>Fechar</b></button>
         </div>
     </div>
 
