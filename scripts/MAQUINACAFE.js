@@ -167,7 +167,7 @@ function toggleAC(state) {
         statusText.textContent = 'A Máquina de Café está ligada.';
         powerOnButton.classList.add('selected');
         powerOffButton.classList.remove('selected');
-        statusText.style.color="green"
+        statusText.style.color="#4CAF50";
         TemperatureControl.style.color = '#000';
         TemperatureControl.style.pointerEvents = "all";
         TemperatureControl.style.borderColor ="#000";
@@ -176,9 +176,7 @@ function toggleAC(state) {
         ModeControl.style.pointerEvents = "all";
         ModeControl.style.borderColor ="#000";
         currentModeDisplay.style.borderColor ="#000";
-        saveChangesButton.style.backgroundColor="green";
         saveChangesButton.removeAttribute('disabled');
-        schedulingButton.removeAttribute('disabled');
         change=true;
 
     } else if (state === 'off') {
@@ -195,9 +193,8 @@ function toggleAC(state) {
         ModeControl.style.pointerEvents = "none"
         ModeControl.style.borderColor = '#777'; 
         currentModeDisplay.style.borderColor ="#777";
-        saveChangesButton.style.backgroundColor="white";
+        
         saveChangesButton.setAttribute('disabled', 'true');
-        schedulingButton.setAttribute('disabled', 'true');
         change=true;
     }
 }
@@ -306,8 +303,6 @@ document.addEventListener('DOMContentLoaded', function() {
     populateTimeScrolls2();
     const saveChangesButton = document.getElementById('guardarButton');
     saveChangesButton.setAttribute('disabled', 'true');
-    const schedulingButton = document.getElementById('agendamentosButton');
-    schedulingButton.setAttribute('disabled', 'true');
 });
 
 

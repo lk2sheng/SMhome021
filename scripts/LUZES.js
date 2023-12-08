@@ -1,39 +1,30 @@
 "use strict";
 
-
 function defineEventHandlersParaElementosHTML(){
     const userIcon = document.getElementById('user-icon');
     const powerOnButton = document.getElementById('powerOnButton');
     const powerOffButton = document.getElementById('powerOffButton');
-    const decreaseTemperature = document.getElementById('decreaseTemperature');
-    const increaseTemperature = document.getElementById('increaseTemperature');
     const decreasePower = document.getElementById('decreasePower');
     const increasePower = document.getElementById('increasePower');
-    const prevModeButton = document.getElementById('prevMode');
-    const nextModeButton = document.getElementById('nextMode');
     const saveChangesButton = document.getElementById('guardarButton');
     const BackButton = document.getElementById('back-button');
     const schedulingButton = document.getElementById('agendamentosButton');
     const confirmButton = document.getElementById('confirmButton');
     const cancelButton = document.getElementById('cancelButton');
     const okButton = document.getElementById('okButton');
-   
-    
+
     userIcon.addEventListener("click", Menu_Perfil);
-    powerOnButton.addEventListener('click', () => toggleAC('on'));
-    powerOffButton.addEventListener('click', () => toggleAC('off'));
-    decreaseTemperature.addEventListener('click', decreaseTemperatureValue);
-    increaseTemperature.addEventListener('click', increaseTemperatureValue);
+    powerOnButton.addEventListener('click', () => toggleCleaner('on'));
+    powerOffButton.addEventListener('click', () => toggleCleaner('off'));
     decreasePower.addEventListener('click', decreasePowerValue);
     increasePower.addEventListener('click', increasePowerValue);
-    prevModeButton.addEventListener('click', () => changeMode(-1));
-    nextModeButton.addEventListener('click', () => changeMode(1));
     saveChangesButton.addEventListener('click', saveChanges);
     BackButton.addEventListener("click",GoBack);
     schedulingButton.addEventListener("click", Scheduling);
     confirmButton.addEventListener('click', schedule);
     cancelButton.addEventListener('click', Cancel);
     okButton.addEventListener('click', SchedulePage);
+
 }
 
 function Menu_Perfil(){
@@ -45,6 +36,7 @@ function Menu_Perfil(){
     }
 }
 
+
 function Scheduling(){
     const Horario = document.getElementById('horario');
     if (Horario.style.display === 'block') {
@@ -54,20 +46,18 @@ function Scheduling(){
     }
 }
 
-function Cancel(){
-    window.location.href = "AC SALA.html";
-}
-
 function SchedulePage(){
     window.location.href = "AGENDAMENTOS.html";
 }
 
-function ScheduleAC(name,connection,temperature,power,mode, dayOfWeek, starthour, startminute, endhour, endminute) {
+function Cancel(){
+    window.location.href = "LUZES.html";
+}
+
+function ScheduleLigths(name,connection, power, dayOfWeek, starthour, startminute, endhour, endminute) {
     this.name= name;
     this.connection = connection;
-    this.temperature = temperature;
     this.power = power;
-    this.mode = mode;
     this.dayOfWeek = dayOfWeek;
     this.starthour = starthour;
     this.startminute = startminute;
@@ -90,8 +80,9 @@ function schedule() {
     const selectedMinute2 = selectedMinuteElement2.value;
 
     if (selectedDays.length > 0 && selectedHour != undefined && selectedMinute != undefined && selectedHour2 != undefined && selectedMinute2 != undefined) {
+
         
-        let ScheduleData = new ScheduleAC("AC SALA",isACOn,currentTemperature,currentPower,currentMode, selectedDays, selectedHour, selectedMinute, selectedHour2, selectedMinute2);
+        let ScheduleData = new ScheduleLigths("LUZES", isLightsOn, currentPower, selectedDays, selectedHour, selectedMinute, selectedHour2, selectedMinute2);
         
         let Schedule = JSON.parse(localStorage.getItem('Schedule')) || [];
         
@@ -103,9 +94,7 @@ function schedule() {
         Horario.style.display = "none"; 
         
     }
-    
-}
-
+}   
 
 function updateSelectedTime(selectedItem, value, selectedTimeId, containerId) {
     const selectedTimeElement = document.getElementById(selectedTimeId);
@@ -122,7 +111,6 @@ function updateSelectedTime(selectedItem, value, selectedTimeId, containerId) {
         selectedTimeElement.value = (value < 10 ? '0' : '') + value;
     } 
 }
-
 
 function populateTimeScrolls1() {
     const hourScroll = document.getElementById('hourScroll');
@@ -181,140 +169,79 @@ function populateTimeScrolls2() {
 
 
 
-let isACOn = false;
-let currentTemperature = 22;
-let currentPower = 2;
-const modes = ["RESFRIAMENTO", "AQUECIMENTO", "VENTILAÇÃO", "AUTOMÁTICO"];
-let currentModeIndex = 0;
-let currentMode="AUTOMÁTICO"
+
+
+let isLightsOn = true;
+
+let currentPower = 100;
 let change = false;
-let previousTemperature = currentTemperature;
+
 let previousPower = currentPower;
-let previousMode = currentMode;
-let ACinfo = []
+let Lightsinfo = []
 
 
+function toggleCleaner(state) {
 
-
-function toggleAC(state) {
     const statusText = document.getElementById('status');
-    const currentTemperatureDisplay = document.getElementById('currentTemperature');
-    const TemperatureControl= document.getElementById("temperature-control");
-    const currentPowerDisplay = document.getElementById('currentpower');
-    const PowerControl= document.getElementById("powercontrol");
-    const currentModeDisplay = document.getElementById('currentMode');
-    const ModeControl= document.getElementById("mode-control");
+    const currentPowerDisplay = document.getElementById('currentPower');
+    const PowerControl= document.getElementById("power-ligths");
     const saveChangesButton = document.getElementById('guardarButton');
     
 
     if (state === 'on') {
-        isACOn = true;
-        statusText.textContent = 'O ar condicionado está ligado.';
+        isLightsOn = true;
+        statusText.textContent = 'As luzes estão ligadas.';
         powerOnButton.classList.add('selected');
         powerOffButton.classList.remove('selected');
         statusText.style.color="#4CAF50";
-        TemperatureControl.style.color = '#000';
-        TemperatureControl.style.pointerEvents = "all";
-        TemperatureControl.style.borderColor ="#000";
-        currentTemperatureDisplay.style.borderColor ="#000";
+        
         PowerControl.style.color = '#000';
         PowerControl.style.pointerEvents = "all";
         PowerControl.style.borderColor ="#000";
-        currentPowerDisplay.style.borderColor ="#000";
-        ModeControl.style.color = '#000';
-        ModeControl.style.pointerEvents = "all";
-        ModeControl.style.borderColor ="#000";
-        currentModeDisplay.style.borderColor ="#000";
+        currentPowerDisplay.style.borderColor ="#000"
         change=true;
         
 
     } else if (state === 'off') {
-        isACOn = false;
-        statusText.textContent = 'O ar condicionado está desligado.';
+        isLightsOn = false;
+        statusText.textContent = 'As luzes estão desligadas';
         powerOnButton.classList.remove('selected');
         powerOffButton.classList.add('selected');
         statusText.style.color="red";
-        TemperatureControl.style.color = '#777'; 
-        TemperatureControl.style.pointerEvents = "none"
-        TemperatureControl.style.borderColor = '#777'; 
-        currentTemperatureDisplay.style.borderColor ="#777";
         PowerControl.style.color = '#777'; 
         PowerControl.style.pointerEvents = "none"
         PowerControl.style.borderColor = '#777'; 
         currentPowerDisplay.style.borderColor ="#777";
-        ModeControl.style.color = '#777'; 
-        ModeControl.style.pointerEvents = "none"
-        ModeControl.style.borderColor = '#777'; 
-        currentModeDisplay.style.borderColor ="#777";
         change=true;
-        
-    }
-}
-
-function decreaseTemperatureValue() {
-    const currentTemperatureDisplay = document.getElementById('currentTemperature');
-    const saveChangesButton = document.getElementById('guardarButton');
-    if (currentTemperature > 16) {
-        currentTemperature--;
-        currentTemperatureDisplay.textContent = currentTemperature + '°C';
-        change = true;
-       
-    }
-}
-
-function increaseTemperatureValue() {
-    const currentTemperatureDisplay = document.getElementById('currentTemperature');
-    const saveChangesButton = document.getElementById('guardarButton');
-    if (currentTemperature < 30) {
-        currentTemperature++;
-        currentTemperatureDisplay.textContent = currentTemperature + '°C';
-        change = true;
         
     }
 }
 
 function decreasePowerValue() {
-    const currentPowerDisplay = document.getElementById('currentpower');
-    const saveChangesButton = document.getElementById('guardarButton');
-    if (currentPower> 1) {
+    const currentPowerDisplay = document.getElementById('currentPower');
+    
+    if (currentPower > 1) {
         currentPower--;
-        currentPowerDisplay.textContent = currentPower;
+        currentPowerDisplay.textContent = currentPower + "%";
         change = true;
         
     }
 }
 
 function increasePowerValue() {
-    const currentPowerDisplay = document.getElementById('currentpower');
-    const saveChangesButton = document.getElementById('guardarButton');
-    if (currentPower < 5) {
+    const currentPowerDisplay = document.getElementById('currentPower');
+   
+    if (currentPower < 100) {
         currentPower++;
-        currentPowerDisplay.textContent = currentPower;
+        currentPowerDisplay.textContent = currentPower + "%";
         change = true;
         
     }
-}
-
-function changeMode(delta) {
-    const currentModeDisplay = document.getElementById('currentMode');
-    const saveChangesButton = document.getElementById('guardarButton');
-    
-    currentModeIndex = (currentModeIndex + delta) % modes.length;
-    if (currentModeIndex < 0) {
-        currentModeIndex = modes.length - 1;
-        change = true;
-        
-    }
-    currentMode = modes[currentModeIndex]; 
-    currentModeDisplay.textContent = currentMode;
-    change=true;
 }
 
 function saveChanges() {
     if (change) {
-        const newTemperature = currentTemperature;
         const newPower = currentPower;
-        const newMode = currentMode;
         const customDialog = document.getElementById('custom-dialog');
         const confirmYes = document.getElementById('confirm-yes');
         const confirmNo = document.getElementById('confirm-no');
@@ -323,18 +250,14 @@ function saveChanges() {
         customDialog.style.display = 'block';
 
         confirmYes.addEventListener('click', function() {
-            previousTemperature = newTemperature;
             previousPower = newPower;
-            previousMode = newMode;
-            currentTemperature = newTemperature;
             currentPower = newPower;
-            currentMode = newMode;
             customDialog.style.display = 'none';
             window.location.href = "../HOME.html";
             
-            let ACData = new AC(isACOn,currentTemperature,currentPower,currentMode);
-            ACinfo.push(ACData);
-            localStorage.setItem("ACSALA",JSON.stringify(ACinfo));
+            let LightsData = new Lights(isLightsOn, currentPower);
+            Lightsinfo.push(LightsData);
+            localStorage.setItem("LUZES",JSON.stringify(Lightsinfo));
             change = false;
 
         });
@@ -342,57 +265,43 @@ function saveChanges() {
         confirmNo.addEventListener('click', function() {
             customDialog.style.display = 'none';
             
-            let storedACInfo = localStorage.getItem("ACSALA");
-            if (storedACInfo) {
-                ACinfo = JSON.parse(storedACInfo);
-                const lastACData = ACinfo[ACinfo.length - 1];
-                if (lastACData) {
-                    isACOn = lastACData.connection;
-                    currentTemperature = lastACData.temperature;
-                    currentPower = lastACData.power;
-                    currentMode = lastACData.mode;
-                    if (isACOn){
-                        toggleAC("on")
+            let storedLightsInfo = localStorage.getItem("LUZES");
+            if (storedLightsInfo) {
+                Lightsinfo = JSON.parse(storedLightsInfo);
+                const lastLightsData = Lightsinfo[Lightsinfo.length - 1];
+                if (lastLightsData) {
+                    isLightsOn = lastLightsData.connection;
+                    currentPower = lastLightsData.power;
+                    if (isLightsOn){
+                        toggleCleaner("on")
                     }else{
-                        toggleAC("off")
+                        toggleCleaner("off")
                     }
-                    const currentTemperatureDisplay = document.getElementById('currentTemperature');
-                    currentTemperatureDisplay.textContent = currentTemperature + '°C';
-                    const currentPowerDisplay = document.getElementById('currentpower');
+                    const currentPowerDisplay = document.getElementById('currentPower');
                     currentPowerDisplay.textContent = currentPower;
-                    const currentModeDisplay = document.getElementById('currentMode');
-                    currentModeDisplay.textContent = currentMode;
                 }
             }else{
-                currentTemperature = previousTemperature;
                 currentPower = previousPower;
-                currentMode = previousMode;
-                
-                const currentTemperatureDisplay = document.getElementById('currentTemperature');
-                currentTemperatureDisplay.textContent = currentTemperature + '°C';
-                const currentPowerDisplay = document.getElementById('currentpower');
-                currentPowerDisplay.textContent = currentPower;
-                const currentModeDisplay = document.getElementById('currentMode');
-                currentModeDisplay.textContent = currentMode;
+                const currentPowerDisplay = document.getElementById('currentPower');
+                currentPowerDisplay.textContent = currentPower + "%";
             }
             change = false;
         });
     }
+    
 }
 
-function AC(connection,temperature,power,mode){
+function Lights(connection,power){
     this.connection = connection;
-    this.temperature = temperature;
     this.power = power;
-    this.mode = mode;
 }
-
 
 document.addEventListener('DOMContentLoaded', function() {
     populateTimeScrolls1();
     populateTimeScrolls2();
+   
+    
 });
-
 
 function GoBack() {
     
@@ -416,30 +325,32 @@ function GoBack() {
 }
 
 function principal(){
-    let storedACInfo = localStorage.getItem("ACSALA");
+    let storedLightsInfo = localStorage.getItem("LUZES");
     
-    if (storedACInfo) {
-        ACinfo = JSON.parse(storedACInfo);
-        const lastACData = ACinfo[ACinfo.length - 1];
-        if (lastACData) {
-            isACOn = lastACData.connection;
-            currentTemperature = lastACData.temperature;
-            currentPower = lastACData.power;
-            currentMode = lastACData.mode;
+    if (storedLightsInfo) {
+        Lightsinfo = JSON.parse(storedLightsInfo);
+        const lastLightsData = Lightsinfo[Lightsinfo.length - 1];
+        if (lastLightsData) {
+            isLightsOn = lastLightsData.connection;
+            currentPower = lastLightsData.power;
           
             
         }
-        if (isACOn){
-            toggleAC("on")
+        if (isLightsOn){
+            toggleCleaner("on")
         }
     } 
+    else{
+        isLightsOn = true;
+        currentPower = 100;
+        if (isLightsOn){
+            toggleCleaner("on")
+        }
+    }
     
-    const currentTemperatureDisplay = document.getElementById('currentTemperature');
-    currentTemperatureDisplay.textContent = currentTemperature + '°C';
-    const currentPowerDisplay = document.getElementById('currentpower');
-    currentPowerDisplay.textContent = currentPower;
-    const currentModeDisplay = document.getElementById('currentMode');
-    currentModeDisplay.textContent = currentMode;
+    
+    const currentPowerDisplay = document.getElementById('currentPower');
+    currentPowerDisplay.textContent = currentPower + "%";
 
     defineEventHandlersParaElementosHTML();
     

@@ -28,15 +28,10 @@
     margin-bottom: 1px;
 }
 
-.cartItemBox p{
-    margin: 2px;
-}
-
 .cartItemBox img{
     display: block;
     margin-left: auto;
     margin-right: auto;
-
     width: 100px;
     height: 70px;
 }
@@ -119,7 +114,7 @@ p{
 }
 
 .removeItemButton:hover {
-    background-color: #e74c3c
+    background-color: #e74c3c;
 }
 
 h3 {
@@ -157,8 +152,9 @@ h4 {
     padding: 2rem 1rem;
     background: var(--white);
     outline: var(--outline);
-    outline-offset: -0.5rem;
+    outline-offset: -1rem;
     text-align: center;
+    
     margin-right: 5px;
     margin-bottom: 15px;
     margin-top: 5px;
