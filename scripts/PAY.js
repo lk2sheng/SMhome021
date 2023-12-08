@@ -59,6 +59,7 @@
                 document.getElementById('verificacaoAnimacao').style.display = 'none';
                 exibirAviso('Compra efectuada com sucesso!');
                 document.getElementById('finalizarCompraBtn').disabled = false;
+                uploadCartToSessionStorage();
             }, 2000);
         } else {
             
@@ -86,7 +87,17 @@
         window.history.back();
     }
     
-    
+    function uploadCartToSessionStorage() {
+        sessionStorage.setItem("CARTINFO",JSON.stringify([]));
+    }
+
+    function GoBack() {
+        window.history.back();
+    }
+
+    function principal(){
+        document.getElementById('back-button').addEventListener("click",GoBack);
+    }
     
     function fecharModal() {
         document.getElementById('modalAviso').style.display = 'none';
