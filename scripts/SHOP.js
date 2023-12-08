@@ -54,7 +54,7 @@ function displayItems() {
 
         const formattedPrice = parseFloat(buyList[i].price).toFixed(2);
         const productPrice = document.createElement("p");
-        productPrice.textContent = "Preço: " + formattedPrice + "€";
+        productPrice.textContent = "€" + formattedPrice + "/un";;
         
         const infoDiv = document.createElement("div");
         infoDiv.classList.add("info-button");
@@ -120,7 +120,7 @@ function displayCartItems() {
 
         const itemPrice = document.createElement("p");
         itemPrice.classList.add("itemPrice");
-        itemPrice.innerText = cartItem.price + "€";
+        itemPrice.innerText = "€" + cartItem.price.toFixed(2) + "/un";
 
         const productQuantity = document.createElement("p");
         productQuantity.id = cartItem.name + "Number";
@@ -189,7 +189,7 @@ function addToCart(button){
 
                 const itemPrice = document.createElement("p");
                 itemPrice.classList.add("itemPrice");
-                itemPrice.innerText = cartItem.price + "€";
+                itemPrice.innerText = "€" + cartItem.price.toFixed(2) + "/un";
 
                 const productQuantity = document.createElement("p");
                 productQuantity.id = cartItem.name + "Number";
