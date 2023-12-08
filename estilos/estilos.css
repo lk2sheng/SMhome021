@@ -211,6 +211,27 @@ body {
     font-size: 45px
 }
 
+.pagina2{
+    text-align: left; 
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 40px; 
+    align-items: flex-start;
+    font-size: 45px
+    
+}
+
+#nomePagina {
+    width: 80%;
+    margin: 0 auto;
+    border: 0.1px solid #ccc;
+    border-radius: 20px;
+    align-items: center;
+    margin-top: 1em;
+    background-color: white;
+}
+
+
 .temperatura {
     position: absolute;
     top: 80px; 
@@ -268,7 +289,7 @@ body {
     margin: 10px 0; 
     text-align: center;
     box-sizing: border-box; 
-    padding: 10px;
+    padding: 0px;
     color:#555
 }
 
@@ -298,10 +319,10 @@ body {
     margin: 0;
     align-content: center;
     justify-content: center;
-    background-image: url("../media/pexels-designecologist-1005058.jpg");
+    background-image: url("../media/homeback.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    backdrop-filter: blur(7px);
+    backdrop-filter: blur(4px);
 }
 
 .overlay {
@@ -310,7 +331,7 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .conteudo3 {
@@ -670,6 +691,7 @@ select {
 
 
 .schedule-container {
+    margin-top: 20px;
     max-height: 500px;
     overflow-y: auto; 
    
