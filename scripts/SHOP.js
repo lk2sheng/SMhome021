@@ -167,8 +167,6 @@ function displayCartItems() {
     checkCart();
 }
 
-
-
 function addToCart(button){
     let cartItem = null;
     for (let i=0 ; i < buyList.length; i++){
@@ -245,6 +243,8 @@ function addToCart(button){
     printTotal();
     checkCart();
 }
+
+
 
 function removeFromCart(button) {
     let removed = false;
