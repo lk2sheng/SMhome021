@@ -18,7 +18,10 @@ const stock = [new Item("Queijo", "2023-12-20", "../media/image-firgo-6.jpg", 1,
     new Item("Leite", "2023-11-3", "../media/image-firgo-2.jpg", 3, "B"), 
 new Item("Iogurte", "2023-12-25", "../media/image-firgo-13.jpg", 2, "B"),
 new Item ("Água com gás", "2024-12-30","../media/image-firgo-7.jpg",2, "A"),
-new Item("Cogumelos", "2024-02-22", "../media/image-firgo-5.jpg",3, "A")];
+new Item("Cogumelos", "2024-02-22", "../media/image-firgo-5.jpg",3, "A"),
+new Item("Bacon", "2024-02-27", "../media/image-firgo-12.jpg",2, "D"),
+new Item("Leite UCAL", "2024-05-10", "../media/image-firgo-16.jpg",1, "B"),
+new Item("Coca-Cola", "2024-03-02", "../media/image-firgo-17.jpg",4, "E")];
 
 
 const suggested = [new Item("Farinha", "none", "../media/farinha.jpg",2, "B"),
